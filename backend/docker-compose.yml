@@ -1,0 +1,6 @@
+﻿services:
+  task.io:
+    image: task.io
+    build:
+      context: .
+      dockerfile: src/Task.io/Dockerfile
