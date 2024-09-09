@@ -18,4 +18,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
+    <ProjectReference Include="..\Task.io.Domain\Task.io.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

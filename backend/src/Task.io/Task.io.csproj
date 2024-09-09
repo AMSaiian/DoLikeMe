@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>59f60768-6157-4bff-ab96-4b92a5a62320</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,8 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
+    <ProjectReference Include="..\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
     <ProjectReference Include="..\Auth\Auth.csproj" />
+    <ProjectReference Include="..\Task.io.Application\Task.io.Application.csproj" />
+    <ProjectReference Include="..\Task.io.Infrastructure\Task.io.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

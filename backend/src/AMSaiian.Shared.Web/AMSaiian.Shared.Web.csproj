@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
+    <ProjectReference Include="..\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
   </ItemGroup>
 
 </Project>

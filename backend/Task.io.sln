@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "src\Auth\Auth.csproj", "{F4078515-1BE5-4AC4-83EF-A01490C53000}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Web", "AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj", "{90DD013F-C54F-4BBB-BB72-ECE26A82D435}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Web", "src\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj", "{90DD013F-C54F-4BBB-BB72-ECE26A82D435}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
