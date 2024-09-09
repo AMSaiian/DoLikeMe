@@ -21,5 +21,10 @@
   <ItemGroup>
     <Folder Include="Persistence\Configurations\.gitkeep\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Infrastructure\AMSaiian.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Task.io.Application\Task.io.Application.csproj" />
+  </ItemGroup>
 
 </Project>

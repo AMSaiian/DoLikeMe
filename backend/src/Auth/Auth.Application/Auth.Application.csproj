@@ -7,20 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Users\Queries\.gitkeep\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.9.2" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
     <PackageReference Include="MediatR" Version="12.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
-    <ProjectReference Include="..\Task.io.Domain\Task.io.Domain.csproj" />
+    <Folder Include="Users\Queries\.gitkeep\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
+    <ProjectReference Include="..\Auth.Domain\Auth.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
-    <ProjectReference Include="..\Auth\Auth.csproj" />
+    <ProjectReference Include="..\..\Auth\Auth\Auth.csproj" />
+    <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
     <ProjectReference Include="..\Task.io.Application\Task.io.Application.csproj" />
     <ProjectReference Include="..\Task.io.Infrastructure\Task.io.Infrastructure.csproj" />
   </ItemGroup>
