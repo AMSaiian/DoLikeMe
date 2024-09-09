@@ -8,7 +8,7 @@ namespace AMSaiian.Shared.Web.Filters;
 
 public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 {
-    private readonly IReadOnlyDictionary<Type, Action<ExceptionContext>> _exceptionHandlers;
+    protected readonly IDictionary<Type, Action<ExceptionContext>> _exceptionHandlers;
 
     public ApiExceptionFilterAttribute()
     {
@@ -30,7 +30,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         base.OnException(context);
     }
 
-    private void HandleException(ExceptionContext context)
+    protected virtual void HandleException(ExceptionContext context)
     {
         Type type = context.Exception.GetType();
 
@@ -40,7 +40,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         }
     }
 
-    private void HandleValidationException(ExceptionContext context)
+    protected virtual void HandleValidationException(ExceptionContext context)
     {
         var exception = (ValidationException)context.Exception;
 
@@ -54,7 +54,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleNotFoundException(ExceptionContext context)
+    protected virtual void HandleNotFoundException(ExceptionContext context)
     {
         var exception = (NotFoundException)context.Exception;
 
@@ -71,7 +71,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleUnauthorizedAccessException(ExceptionContext context)
+    protected virtual void HandleUnauthorizedAccessException(ExceptionContext context)
     {
         var exception = (UnauthorizedAccessException)context.Exception;
 
@@ -91,7 +91,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleForbiddenAccessException(ExceptionContext context)
+    protected virtual void HandleForbiddenAccessException(ExceptionContext context)
     {
         var exception = (ForbiddenAccessException)context.Exception;
 
@@ -111,7 +111,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleConflictException(ExceptionContext context)
+    protected virtual void HandleConflictException(ExceptionContext context)
     {
         var exception = (ConflictException)context.Exception;
 

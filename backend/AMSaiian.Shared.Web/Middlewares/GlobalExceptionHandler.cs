@@ -8,9 +8,9 @@ namespace AMSaiian.Shared.Web.Middlewares;
 public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
     : IExceptionHandler
 {
-    private readonly ILogger<GlobalExceptionHandler> _logger = logger;
+    protected readonly ILogger<GlobalExceptionHandler> _logger = logger;
 
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext,
+    public virtual async ValueTask<bool> TryHandleAsync(HttpContext httpContext,
                                                 Exception exception,
                                                 CancellationToken cancellationToken)
     {
