@@ -23,7 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.io.Infrastructure", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.io.Application", "src\Task.io.Application\Task.io.Application.csproj", "{051F8579-FD6E-46EB-B771-49F8F6940AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.io.Shared", "src\Task.io.Shared\Task.io.Shared.csproj", "{516594A1-DD13-44B1-A9E7-E83A905F8CF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Application", "src\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj", "{516594A1-DD13-44B1-A9E7-E83A905F8CF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "src\Auth\Auth.csproj", "{F4078515-1BE5-4AC4-83EF-A01490C53000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Web", "AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj", "{90DD013F-C54F-4BBB-BB72-ECE26A82D435}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,14 @@ Global
 		{516594A1-DD13-44B1-A9E7-E83A905F8CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516594A1-DD13-44B1-A9E7-E83A905F8CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516594A1-DD13-44B1-A9E7-E83A905F8CF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4078515-1BE5-4AC4-83EF-A01490C53000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4078515-1BE5-4AC4-83EF-A01490C53000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4078515-1BE5-4AC4-83EF-A01490C53000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4078515-1BE5-4AC4-83EF-A01490C53000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

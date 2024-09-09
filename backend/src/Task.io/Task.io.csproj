@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
   </ItemGroup>
 
@@ -21,6 +24,11 @@
   <ItemGroup>
     <Folder Include="Common\Constants\.gitkeep\" />
     <Folder Include="Common\Mapping\.gitkeep\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
+    <ProjectReference Include="..\Auth\Auth.csproj" />
   </ItemGroup>
 
 </Project>
