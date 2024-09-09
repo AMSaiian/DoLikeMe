@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Security.Claims;
-using Auth.Infrastructure.Persistence;
+﻿using Auth.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,8 +31,7 @@ public static class ConfigureServices
             .AddDbContext<AppIdentityDbContext>(options =>
             {
                 options
-                    .UseNpgsql(connectionString)
-                    .UseSnakeCaseNamingConvention(CultureInfo.InvariantCulture);
+                    .UseNpgsql(connectionString);
             })
             .AddIdentityCore<IdentityUser<Guid>>()
             .AddEntityFrameworkStores<AppIdentityDbContext>();

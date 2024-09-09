@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.1" />
-    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8" />
@@ -25,6 +24,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\AMSaiian.Shared.Infrastructure\AMSaiian.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\Task.io.Application\Task.io.Application.csproj" />
   </ItemGroup>
 

@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "src\Auth\Auth.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Web", "src\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj", "{90DD013F-C54F-4BBB-BB72-ECE26A82D435}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSaiian.Shared.Infrastructure", "src\AMSaiian.Shared.Infrastructure\AMSaiian.Shared.Infrastructure.csproj", "{3CB9B700-EF41-4189-A08D-D829105D4D83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90DD013F-C54F-4BBB-BB72-ECE26A82D435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB9B700-EF41-4189-A08D-D829105D4D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB9B700-EF41-4189-A08D-D829105D4D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB9B700-EF41-4189-A08D-D829105D4D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB9B700-EF41-4189-A08D-D829105D4D83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
