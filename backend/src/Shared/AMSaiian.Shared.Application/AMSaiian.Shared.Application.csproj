@@ -13,4 +13,8 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AMSaiian.Shared.Domain\AMSaiian.Shared.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

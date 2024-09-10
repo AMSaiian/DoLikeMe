@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AMSaiian.Shared.Infrastructure;
+namespace AMSaiian.Shared.Infrastructure.Extensions;
 
 public static class ModelBuilderExtensions
 {
