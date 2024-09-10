@@ -1,6 +1,14 @@
-﻿namespace Auth.Application.Common.Interfaces;
+﻿using Auth.Application.Common.Models.User;
+
+namespace Auth.Application.Common.Interfaces;
 
 public interface IAuthService
 {
-    public Task CreateUser();
+    public Task<Guid> CreateUser(UserDto user, CancellationToken cancellationToken = default);
+
+    public Task UpdateUser(UpdateUserProfileDto user, CancellationToken cancellationToken = default);
+
+    public Task ChangePassword(UpdateUserPasswordDto user, CancellationToken cancellationToken = default);
+
+    public Task<string> SignUpUser(SignUpDto user, CancellationToken cancellationToken = default);
 }

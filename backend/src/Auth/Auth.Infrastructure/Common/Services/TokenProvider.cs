@@ -15,7 +15,7 @@ public class TokenProvider(IOptionsSnapshot<TokenProviderOptions> options,
     private readonly IOptionsSnapshot<TokenProviderOptions> _options = options;
     private readonly JsonWebTokenHandler _tokenHandler = tokenHandler;
 
-    public string CreateToken(IList<Claim> claims)
+    public Task<string> CreateToken(IList<Claim> claims, CancellationToken cancellationToken = default)
     {
         var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Secret));
 
@@ -30,6 +30,6 @@ public class TokenProvider(IOptionsSnapshot<TokenProviderOptions> options,
 
         string token = _tokenHandler.CreateToken(descriptor);
 
-        return token;
+        return Task.FromResult(token);
     }
 }

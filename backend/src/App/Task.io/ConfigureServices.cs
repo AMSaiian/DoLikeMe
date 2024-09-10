@@ -19,8 +19,6 @@ public static class ConfigureServices
             options.LowercaseQueryStrings = true;
         });
 
-
-
         services.AddControllers(opts => opts.Filters.Add<ApiExceptionFilterAttribute>())
             .AddApplicationPart(Assembly.Load("Auth"));
 

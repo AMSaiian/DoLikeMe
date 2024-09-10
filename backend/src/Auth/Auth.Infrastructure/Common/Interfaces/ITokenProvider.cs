@@ -4,5 +4,5 @@ namespace Auth.Infrastructure.Common.Interfaces;
 
 public interface ITokenProvider
 {
-    public string CreateToken(IList<Claim> claims);
+    Task<string> CreateToken(IList<Claim> claims, CancellationToken cancellationToken = default);
 }

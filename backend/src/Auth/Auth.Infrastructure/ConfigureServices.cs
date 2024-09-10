@@ -1,4 +1,5 @@
-﻿using Auth.Infrastructure.Persistence;
+﻿using Auth.Application.Common.Constants;
+using Auth.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,8 +24,9 @@ public static class ConfigureServices
         {
             options.Password.RequireDigit = true;
             options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = true;
             options.Password.RequireNonAlphanumeric = true;
-            options.Password.RequiredLength = 8;
+            options.Password.RequiredLength = ValidationConstants.UserPasswordMinimumLength;
             options.User.RequireUniqueEmail = true;
         });
         services

@@ -1,4 +1,5 @@
-﻿using Auth.Infrastructure.Persistence.Constraints;
+﻿using Auth.Application.Common.Constants;
+using Auth.Infrastructure.Persistence.Constraints;
 using Auth.Infrastructure.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,10 +14,10 @@ public class AuthUserConfiguration : IEntityTypeConfiguration<AuthUser>
             .HasDefaultValueSql(DataSchemeConstraints.TimestampNowSql);
 
         builder.Property(user => user.UserName)
-            .HasMaxLength(DataSchemeConstraints.UserNameLength)
+            .HasMaxLength(ValidationConstants.UserNameLength)
             .IsRequired();
         builder.Property(user => user.NormalizedUserName)
-            .HasMaxLength(DataSchemeConstraints.UserNameLength)
+            .HasMaxLength(ValidationConstants.UserNameLength)
             .IsRequired();
 
         builder.HasIndex(user => user.UserName)
@@ -25,10 +26,10 @@ public class AuthUserConfiguration : IEntityTypeConfiguration<AuthUser>
             .IsUnique();
 
         builder.Property(user => user.Email)
-            .HasMaxLength(DataSchemeConstraints.UserEmailLength)
+            .HasMaxLength(ValidationConstants.UserEmailLength)
             .IsRequired();
         builder.Property(user => user.NormalizedEmail)
-            .HasMaxLength(DataSchemeConstraints.UserEmailLength)
+            .HasMaxLength(ValidationConstants.UserEmailLength)
             .IsRequired();
 
         builder.HasIndex(user => user.Email)
