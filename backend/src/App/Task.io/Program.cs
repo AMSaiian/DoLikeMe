@@ -1,4 +1,5 @@
 using Auth;
+using Serilog;
 using Task.io;
 using Task.io.Application;
 using Task.io.Infrastructure;
@@ -26,7 +27,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSerilogRequestLogging();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

@@ -3,7 +3,6 @@ using AMSaiian.Shared.Application.Interfaces;
 using Auth.Application.Common.Constants;
 using Auth.Application.Common.Interfaces;
 using Auth.Application.Common.Models.User;
-using Auth.Application.Users.Commands.UpdateProfileInfo;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;

@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using System.Text;
 using Auth.Infrastructure.Common.Interfaces;
 using Auth.Infrastructure.Common.Options;
 using Microsoft.Extensions.Options;

@@ -4,7 +4,6 @@ using Auth.Application.Common.Constants;
 using Auth.Application.Common.Interfaces;
 using Auth.Application.Common.Models.User;
 using Auth.Infrastructure.Common.Interfaces;
-using Auth.Infrastructure.Identity.Scopes;
 using Auth.Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
