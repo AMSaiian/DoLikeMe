@@ -19,6 +19,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
                 { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
                 { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
                 { typeof(ConflictException), HandleConflictException },
+                { typeof(UnprocessableException), HandleUnprocessableException },
             };
     }
 
@@ -126,6 +127,26 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.Result = new ObjectResult(details)
         {
             StatusCode = StatusCodes.Status409Conflict
+        };
+
+        context.ExceptionHandled = true;
+    }
+
+    protected virtual void HandleUnprocessableException(ExceptionContext context)
+    {
+        var exception = (UnprocessableException)context.Exception;
+
+        var details = new ProblemDetails
+        {
+            Status = StatusCodes.Status422UnprocessableEntity,
+            Title = "Request has been recognized but can't be processed",
+            Detail = exception.Message,
+            Type = "https://www.rfc-editor.org/rfc/rfc4918#section-11.2"
+        };
+
+        context.Result = new ObjectResult(details)
+        {
+            StatusCode = StatusCodes.Status422UnprocessableEntity
         };
 
         context.ExceptionHandled = true;

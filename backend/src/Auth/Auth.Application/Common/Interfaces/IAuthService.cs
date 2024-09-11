@@ -11,4 +11,6 @@ public interface IAuthService
     public Task ChangePassword(UpdateUserPasswordDto user, CancellationToken cancellationToken = default);
 
     public Task<string> SignUpUser(SignUpDto user, CancellationToken cancellationToken = default);
+
+    public Task DeleteUser(DeleteUserDto user, CancellationToken cancellationToken = default);
 }

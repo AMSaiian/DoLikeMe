@@ -18,6 +18,9 @@ public class RegisterUserCommandValidator : AbstractValidator<RegisterUserComman
             .EmailAddress();
 
         RuleFor(command => command.Password)
+            .Equal(command => command.ConfirmPassword);
+
+        RuleFor(command => command.Password)
             .NotEmpty()
             .MinimumLength(ValidationConstants.UserPasswordMinimumLength)
             .MaximumLength(ValidationConstants.UserPasswordMaximumLength)

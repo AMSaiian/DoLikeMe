@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AMSaiian.Shared.Domain\AMSaiian.Shared.Domain.csproj" />
   </ItemGroup>
 

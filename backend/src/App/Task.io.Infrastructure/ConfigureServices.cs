@@ -5,7 +5,7 @@ namespace Task.io.Infrastructure;
 
 public static class ConfigureServices
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, string configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString)
     {
         return services;
     }

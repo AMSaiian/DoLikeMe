@@ -6,10 +6,12 @@ using Task.io.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Host.UseLogging(builder.Services, builder.Configuration);
+
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructure("");
-builder.Services.AddAuthProvider("");
-builder.Services.AddApiServices();
+builder.Services.AddAuthProvider(builder.Configuration, "Auth");
+builder.Services.AddApiServices(builder.Configuration);
 
 var app = builder.Build();
 

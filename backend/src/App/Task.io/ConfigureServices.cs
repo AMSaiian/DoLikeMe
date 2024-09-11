@@ -2,22 +2,46 @@
 using AMSaiian.Shared.Web.Filters;
 using AMSaiian.Shared.Web.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog;
+using Serilog.Core;
+using Task.io.Common.Extensions;
+using Task.io.Common.Options;
 
 namespace Task.io;
 
 public static class ConfigureServices
 {
-    public static IServiceCollection AddApiServices(this IServiceCollection services)
+    public static IHostBuilder UseLogging(this IHostBuilder hostBuilder,
+                                          IServiceCollection services,
+                                          IConfigurationManager configuration)
+    {
+        services.AddSingleton<SensitiveLoggerPolicy>();
+
+        hostBuilder.UseSerilog((context, provider, loggerConfiguration) =>
+        {
+            loggerConfiguration.ReadFrom.Configuration(context.Configuration);
+            loggerConfiguration.Destructure.With(provider.GetRequiredService<SensitiveLoggerPolicy>());
+        });
+
+        services.Configure<SensitiveLoggerOptions>(configuration
+                                                       .GetSection(SensitiveLoggerOptions.SectionName));
+
+        return hostBuilder;
+    }
+
+    public static IServiceCollection AddApiServices(this IServiceCollection services,
+                                                    IConfigurationManager configuration)
     {
         services.AddHttpContextAccessor();
 
         services.AddProblemDetails();
 
-        services.Configure<RouteOptions>(options =>
-        {
-            options.LowercaseUrls = true;
-            options.LowercaseQueryStrings = true;
-        });
+        services
+            .Configure<RouteOptions>(options =>
+            {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+            });
 
         services.AddControllers(opts => opts.Filters.Add<ApiExceptionFilterAttribute>())
             .AddApplicationPart(Assembly.Load("Auth"));
@@ -28,8 +52,8 @@ public static class ConfigureServices
             .AddExceptionHandler<GlobalExceptionHandler>()
             .AddEndpointsApiExplorer()
             .AddSwaggerGen()
-            .AddAutoMapper(configuration =>
-                               configuration.AddMaps(Assembly.GetExecutingAssembly()))
+            .AddAutoMapper(mapperConfiguration =>
+                               mapperConfiguration.AddMaps(Assembly.GetExecutingAssembly()))
             .AddCustomServices();
 
         return services;
