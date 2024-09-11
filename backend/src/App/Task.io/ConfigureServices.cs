@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
+using AMSaiian.Shared.Application.Interfaces;
 using AMSaiian.Shared.Web.Filters;
 using AMSaiian.Shared.Web.Middlewares;
+using AMSaiian.Shared.Web.Services;
 using Auth.Infrastructure.Common.Options;
 using Auth.Infrastructure.Identity;
 using Auth.Infrastructure.Identity.Scopes;
@@ -162,6 +164,8 @@ public static class ConfigureServices
 
     private static IServiceCollection AddCustomServices(this IServiceCollection services)
     {
+        services.AddSingleton<ICurrentUserService, CurrentUserService>();
+
         return services;
     }
 }

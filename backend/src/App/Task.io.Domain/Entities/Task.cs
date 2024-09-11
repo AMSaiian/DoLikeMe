@@ -18,6 +18,8 @@ public class Task : BaseEntity, IOrdering, IFiltered, IRanged
 
     public Priority Priority { get; set; } = Priority.Medium;
 
+    public Guid UserId { get; set; }
+
     public User User { get; set; } = default!;
 
     public static ReadOnlyDictionary<string, dynamic> OrderedBy { get; } = new(

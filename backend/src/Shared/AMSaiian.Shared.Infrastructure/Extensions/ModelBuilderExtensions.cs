@@ -23,7 +23,7 @@ public static class ModelBuilderExtensions
                 ArgumentNullException.ThrowIfNull(currentTableName);
                 modelBuilder
                     .Entity(entity.Name)
-                    .ToTable(GetSnakeName(currentTableName));
+                    .ToTable(currentTableName.ToSnakeCase());
 
                 entity
                     .GetProperties()
@@ -31,17 +31,9 @@ public static class ModelBuilderExtensions
                     .ForEach(property =>
                                  modelBuilder.Entity(entity.Name)
                                      .Property(property.Name)
-                                     .HasColumnName(GetSnakeName(property.Name)));
+                                     .HasColumnName(property.Name.ToSnakeCase()));
             });
 
         return modelBuilder;
-    }
-
-    private static string GetSnakeName(string name)
-    {
-        return string.Concat(
-            name.Select((x, i) => i > 0 && char.IsUpper(x)
-                            ? $"_{x}"
-                            : x.ToString())).ToLower();
     }
 }
