@@ -2,6 +2,7 @@
 using AMSaiian.Shared.Application.Exceptions;
 using Auth.Application.Common.Constants;
 using Auth.Application.Common.Interfaces;
+using Auth.Application.Common.Models.Token;
 using Auth.Application.Common.Models.User;
 using Auth.Infrastructure.Common.Interfaces;
 using Auth.Infrastructure.Persistence.Entities;
@@ -121,7 +122,7 @@ public class AuthService(ITokenProvider tokenProvider,
         }
     }
 
-    public async Task<string> SignUpUser(SignUpDto user, CancellationToken cancellationToken = default)
+    public async Task<TokenDto> SignUpUser(SignUpDto user, CancellationToken cancellationToken = default)
     {
         AuthUser signingUpUser = await _userManager.FindByEmailAsync(user.Identifier)
                               ?? await _userManager.FindByNameAsync(user.Identifier)
@@ -139,7 +140,7 @@ public class AuthService(ITokenProvider tokenProvider,
         ClaimsPrincipal claims = await _claimsFactory.CreateAsync(signingUpUser);
         string token = await _tokenProvider.CreateToken(claims, cancellationToken);
 
-        return token;
+        return new TokenDto { Value = token };
     }
 
     public async Task DeleteUser(DeleteUserDto user, CancellationToken cancellationToken = default)

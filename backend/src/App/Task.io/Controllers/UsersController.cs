@@ -16,7 +16,7 @@ public class UsersController(ISender mediator, IMapper mapper)
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Register([FromBody] CreateUserRequest request,
+    public async Task<IActionResult> Create([FromBody] CreateUserRequest request,
                                               CancellationToken cancellationToken = default)
     {
         var command = _mapper.Map<RegisterUserCommand>(request);
