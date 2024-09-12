@@ -14,10 +14,11 @@
             IsDefined = isDefined;
         }
 
-        public TValue Value { get; }
-        public bool IsDefined { get; }
+        public TValue Value { get; } = default!;
+        public bool IsDefined { get; } = false;
 
         public static implicit operator Undefinable<TValue>(TValue value) => new Undefinable<TValue>(true, value);
+        public static implicit operator TValue(Undefinable<TValue> undefinable) => undefinable.Value;
     }
 }
 

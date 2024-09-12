@@ -14,14 +14,14 @@ public record CreateUserCommand : IRequest<Guid>
     public required Guid AuthId { get; init; }
 }
 
-public class CreateUserCommandHandler(IAppDbContext dbContext,
+public class CreateUserHandler(IAppDbContext dbContext,
                                       IMapper mapper,
-                                      ILogger<CreateUserCommandHandler> logger)
+                                      ILogger<CreateUserHandler> logger)
     : IRequestHandler<CreateUserCommand, Guid>
 {
     private readonly IAppDbContext _dbContext = dbContext;
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger<CreateUserCommandHandler> _logger = logger;
+    private readonly ILogger<CreateUserHandler> _logger = logger;
 
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
@@ -37,6 +37,8 @@ public class CreateUserCommandHandler(IAppDbContext dbContext,
         var newUser = _mapper.Map<User>(request);
 
         await _dbContext.Users.AddAsync(newUser, cancellationToken);
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation(LoggingTemplates.UserCreated, newUser.Id);
 
