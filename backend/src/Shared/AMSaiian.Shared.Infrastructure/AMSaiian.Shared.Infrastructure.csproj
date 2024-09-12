@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
     <ProjectReference Include="..\AMSaiian.Shared.Domain\AMSaiian.Shared.Domain.csproj" />
   </ItemGroup>
 

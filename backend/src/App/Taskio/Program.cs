@@ -38,4 +38,7 @@ app.MapControllers();
 
 await app.RunAsync();
 
-public partial class Program;
+namespace Taskio
+{
+    public partial class Program;
+}

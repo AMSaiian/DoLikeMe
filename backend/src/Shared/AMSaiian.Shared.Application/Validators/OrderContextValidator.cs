@@ -1,4 +1,4 @@
-﻿using AMSaiian.Shared.Application.Models;
+﻿using AMSaiian.Shared.Application.Models.Pagination;
 using FluentValidation;
 
 namespace AMSaiian.Shared.Application.Validators;

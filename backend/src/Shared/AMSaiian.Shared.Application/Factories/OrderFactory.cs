@@ -1,6 +1,6 @@
 ﻿using AMSaiian.Shared.Application.Exceptions;
 using AMSaiian.Shared.Application.Interfaces;
-using AMSaiian.Shared.Application.Models;
+using AMSaiian.Shared.Application.Models.Pagination;
 using AMSaiian.Shared.Application.Templates;
 using AMSaiian.Shared.Domain.Interfaces;
 using FluentValidation.Results;

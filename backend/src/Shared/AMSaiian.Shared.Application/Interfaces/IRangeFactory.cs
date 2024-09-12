@@ -1,4 +1,4 @@
-﻿using AMSaiian.Shared.Application.Models;
+﻿using AMSaiian.Shared.Application.Models.Filtering;
 using AMSaiian.Shared.Domain.Interfaces;
 
 namespace AMSaiian.Shared.Application.Interfaces;

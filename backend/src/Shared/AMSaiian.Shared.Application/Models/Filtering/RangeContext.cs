@@ -1,4 +1,4 @@
-﻿namespace AMSaiian.Shared.Application.Models;
+﻿namespace AMSaiian.Shared.Application.Models.Filtering;
 
 public record RangeContext
 {
