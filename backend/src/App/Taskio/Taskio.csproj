@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>59f60768-6157-4bff-ab96-4b92a5a62320</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Constants\.gitkeep\" />
+    <Folder Include="Common\Mapping\.gitkeep\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Auth\Auth\Auth.csproj" />
+    <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
+    <ProjectReference Include="..\Taskio.Application\Taskio.Application.csproj" />
+    <ProjectReference Include="..\Taskio.Infrastructure\Taskio.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
