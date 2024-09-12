@@ -1,14 +1,13 @@
-﻿using AMSaiian.Shared.Application.Exceptions;
-using AMSaiian.Shared.Application.Interfaces;
+﻿using AMSaiian.Shared.Application.Interfaces;
 using AMSaiian.Shared.Application.Models.Pagination;
 using AMSaiian.Shared.Domain.Interfaces;
-using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 
 namespace AMSaiian.Shared.Infrastructure.Services;
 
-public class PaginationService : IPaginationService
+public class PaginationService(IOrderFactory factory) : IPaginationService
 {
+    private readonly IOrderFactory _factory = factory;
 
     public async Task<Paginated<TEntity>> PaginateAsync<TEntity>(
         IQueryable<TEntity> query,
@@ -16,7 +15,9 @@ public class PaginationService : IPaginationService
         CancellationToken cancellationToken)
         where TEntity : IOrdering
     {
-        IQueryable<TEntity> queryForChunking = TryOrderDynamically(query, context.OrderContext);
+        IOrderedQueryable<TEntity> queryForChunking = _factory
+            .OrderDynamically(query,
+                              context.OrderContext);
 
         var chunkQuery = GetChunkQuery(queryForChunking, context.PageContext);
         var paginationInfo = await GetPaginationInfoAsync(query,
@@ -32,29 +33,6 @@ public class PaginationService : IPaginationService
         };
 
         return paginated;
-    }
-
-    public IOrderedQueryable<TEntity> TryOrderDynamically<TEntity>(
-        IQueryable<TEntity> query,
-        OrderContext context)
-        where TEntity : IOrdering
-    {
-        TEntity.OrderedBy.TryGetValue(context.PropertyName, out dynamic? orderExpression);
-
-        if (orderExpression is null)
-        {
-            throw new ValidationException([ new ValidationFailure
-            {
-                PropertyName = nameof(context.PropertyName),
-                ErrorMessage = $"Can't order entity by {context.PropertyName}"
-            }]);
-        }
-
-        IOrderedQueryable<TEntity> sortedQuery = context.IsDescending
-            ? Queryable.OrderByDescending(query, orderExpression)
-            : Queryable.OrderBy(query, orderExpression);
-
-        return sortedQuery;
     }
 
     public IQueryable<TEntity> GetChunkQuery<TEntity>(

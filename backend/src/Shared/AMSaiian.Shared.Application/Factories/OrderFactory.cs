@@ -9,8 +9,8 @@ namespace AMSaiian.Shared.Application.Factories;
 
 public class OrderFactory : IOrderFactory
 {
-    public IQueryable<TEntity> OrderDynamically<TEntity>(IQueryable<TEntity> source,
-                                                         OrderContext context)
+    public IOrderedQueryable<TEntity> OrderDynamically<TEntity>(IQueryable<TEntity> source,
+                                                                OrderContext context)
         where TEntity : IOrdering
     {
         TEntity.OrderedBy.TryGetValue(context.PropertyName, out dynamic? orderExpression);

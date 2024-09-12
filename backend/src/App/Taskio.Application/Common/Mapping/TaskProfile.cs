@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Taskio.Application.Common.Models.Task;
 using Taskio.Application.Tasks.Commands.Create;
 using Taskio.Application.Tasks.Commands.Update;
 using Task = Taskio.Domain.Entities.Task;
@@ -26,5 +27,10 @@ public class TaskProfile : Profile
             })
             .ForMember(dest => dest.Status, opt => opt.Condition(src => src.Status is not null))
             .ForMember(dest => dest.Priority, opt => opt.Condition(src => src.Priority is not null));
+
+        CreateMap<Task, TaskShortDto>()
+            .IncludeAllDerived();
+
+        CreateMap<Task, TaskFullDto>();
     }
 }

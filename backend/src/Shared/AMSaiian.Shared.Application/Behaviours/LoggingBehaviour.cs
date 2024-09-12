@@ -31,9 +31,9 @@ public class LoggingBehaviour<TRequest, TResponse>(ILogger<TRequest> logger)
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Request {@Request} failed with error at {@DateTime}",
-                             request,
-                             DateTime.UtcNow);
+            _logger.LogWarning(ex, "Request {@Request} failed with error at {@DateTime}",
+                               request,
+                               DateTime.UtcNow);
             throw;
         }
     }

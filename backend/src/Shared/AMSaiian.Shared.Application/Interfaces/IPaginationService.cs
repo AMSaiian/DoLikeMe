@@ -11,11 +11,6 @@ public interface IPaginationService
         CancellationToken cancellationToken)
         where TEntity : IOrdering;
 
-    public IOrderedQueryable<TEntity> TryOrderDynamically<TEntity>(
-        IQueryable<TEntity> query,
-        OrderContext context)
-        where TEntity : IOrdering;
-
     public IQueryable<TEntity> GetChunkQuery<TEntity>(
         IQueryable<TEntity> query,
         PageContext context)
