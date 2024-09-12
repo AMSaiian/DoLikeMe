@@ -6,7 +6,7 @@ using Task.io.Domain.Enums;
 
 namespace Task.io.Domain.Entities;
 
-public class Task : BaseEntity, IOrdering, IFiltered, IRanged
+public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
 {
     public string Title { get; set; } = default!;
 
@@ -32,47 +32,46 @@ public class Task : BaseEntity, IOrdering, IFiltered, IRanged
             { "createdDate", (Expression<Func<Task, DateTime>>)(ent => ent.CreatedAt) },
         });
 
-    public static ReadOnlyDictionary<string, Func<HashSet<string>, dynamic>> FilteredBy { get; } = new(
-        new Dictionary<string, Func<HashSet<string>, dynamic>>
+    public static ReadOnlyDictionary<string, Func<HashSet<string>, Expression<Func<Task, bool>>>> FilteredBy { get; } = new(
+        new Dictionary<string, Func<HashSet<string>, Expression<Func<Task, bool>>>>
         {
             {
-                "priority", (Func<HashSet<string>, Expression<Func<Task, bool>>>)(filters =>
-                    entity => filters.Select(Enum.Parse<Priority>).ToList().Contains(entity.Priority))
+                "priority", filters =>
+                    entity => filters.Select(Enum.Parse<Priority>).ToList().Contains(entity.Priority)
             },
             {
-                "status", (Func<HashSet<string>, Expression<Func<Task, bool>>>)(filters =>
-                    entity => filters.Select(Enum.Parse<Status>).Contains(entity.Status))
+                "status", filters =>
+                    entity => filters.Select(Enum.Parse<Status>).Contains(entity.Status)
             },
             {
-                "dueDate", (Func<HashSet<string>, Expression<Func<Task, bool>>>)(filters =>
-                    entity => entity.DueDate.HasValue
-                           && filters
-                                  .Select(entry => DateTime
-                                              .Parse(entry, CultureInfo.InvariantCulture))
-                                  .Contains(entity.DueDate.Value))
-            },
-            {
-                "createdDate", (Func<HashSet<string>, Expression<Func<Task, bool>>>)(filters =>
-                    entity => filters
+                "dueDate", filters => entity =>
+                    entity.DueDate.HasValue
+                 && filters
                         .Select(entry => DateTime
                                     .Parse(entry, CultureInfo.InvariantCulture))
-                        .Contains(entity.CreatedAt))
+                        .Contains(entity.DueDate.Value)
+            },
+            {
+                "createdDate", filters => entity => filters
+                    .Select(entry => DateTime
+                                .Parse(entry, CultureInfo.InvariantCulture))
+                    .Contains(entity.CreatedAt)
             }
         });
 
-    public static ReadOnlyDictionary<string, Func<string, string, dynamic>> RangedBy { get; } = new(
-        new Dictionary<string, Func<string, string, dynamic>>
+    public static ReadOnlyDictionary<string, Func<string, string, Expression<Func<Task, bool>>>> RangedBy { get; } = new(
+        new Dictionary<string, Func<string, string, Expression<Func<Task, bool>>>>
         {
             {
-                "dueDate", (Func<string, string, Expression<Func<Task, bool>>>)((start, end) =>
+                "dueDate", (start, end) =>
                     entity => entity.DueDate.HasValue
                            && entity.DueDate >= DateTime.Parse(start, CultureInfo.InvariantCulture)
-                           && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture))
+                           && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture)
             },
             {
-                "createdDate", (Func<string, string, Expression<Func<Task, bool>>>)((start, end) =>
+                "createdDate", (start, end) =>
                     entity => entity.DueDate >= DateTime.Parse(start, CultureInfo.InvariantCulture)
-                           && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture))
+                           && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture)
             }
         });
 }

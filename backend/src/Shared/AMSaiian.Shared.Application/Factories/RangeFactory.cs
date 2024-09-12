@@ -1,4 +1,5 @@
-﻿using AMSaiian.Shared.Application.Exceptions;
+﻿using System.Linq.Expressions;
+using AMSaiian.Shared.Application.Exceptions;
 using AMSaiian.Shared.Application.Interfaces;
 using AMSaiian.Shared.Application.Models;
 using AMSaiian.Shared.Application.Templates;
@@ -11,9 +12,10 @@ public class RangeFactory : IRangeFactory
 {
     public IQueryable<TEntity> RangeDynamically<TEntity>(IQueryable<TEntity> source,
                                                          RangeContext context)
-        where TEntity : IRanged
+        where TEntity : IRanged<TEntity>
     {
-        TEntity.RangedBy.TryGetValue(context.PropertyName, out Func<string, string, dynamic>? rangeFunction);
+        TEntity.RangedBy.TryGetValue(context.PropertyName,
+                                     out Func<string, string, Expression<Func<TEntity, bool>>>? rangeFunction);
 
         if (rangeFunction is null)
         {
@@ -27,7 +29,7 @@ public class RangeFactory : IRangeFactory
         try
         {
             var rangeExpression = rangeFunction(context.Start, context.End);
-            return Queryable.Where(source, rangeExpression);
+            return source.Where(rangeExpression);
         }
         catch (Exception)
         {

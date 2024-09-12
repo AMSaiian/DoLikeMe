@@ -7,5 +7,5 @@ public interface IRangeFactory
 {
     public IQueryable<TEntity> RangeDynamically<TEntity>(IQueryable<TEntity> source,
                                                          RangeContext context)
-        where TEntity : IRanged;
+        where TEntity : IRanged<TEntity>;
 }

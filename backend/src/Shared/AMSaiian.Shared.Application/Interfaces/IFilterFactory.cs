@@ -7,5 +7,5 @@ public interface IFilterFactory
 {
     public IQueryable<TEntity> FilterDynamically<TEntity>(IQueryable<TEntity> source,
                                                           FilterContext context)
-        where TEntity : IFiltered;
+        where TEntity : IFiltered<TEntity>;
 }

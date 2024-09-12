@@ -1,4 +1,5 @@
-﻿using AMSaiian.Shared.Application.Exceptions;
+﻿using System.Linq.Expressions;
+using AMSaiian.Shared.Application.Exceptions;
 using AMSaiian.Shared.Application.Interfaces;
 using AMSaiian.Shared.Application.Models;
 using AMSaiian.Shared.Application.Templates;
@@ -11,9 +12,10 @@ public class FilterFactory : IFilterFactory
 {
     public IQueryable<TEntity> FilterDynamically<TEntity>(IQueryable<TEntity> source,
                                                           FilterContext context)
-        where TEntity : IFiltered
+        where TEntity : IFiltered<TEntity>
     {
-        TEntity.FilteredBy.TryGetValue(context.PropertyName, out Func<HashSet<string>, dynamic>? filterFunction);
+        TEntity.FilteredBy.TryGetValue(context.PropertyName,
+                                       out Func<HashSet<string>, Expression<Func<TEntity, bool>>>? filterFunction);
 
         if (filterFunction is null)
         {
@@ -27,7 +29,7 @@ public class FilterFactory : IFilterFactory
         try
         {
             var filterExpression = filterFunction(context.Filters);
-            return Queryable.Where(source, filterExpression);
+            return source.Where(filterExpression);
         }
         catch (Exception)
         {
