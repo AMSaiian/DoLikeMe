@@ -15,7 +15,8 @@ public class FilterFactory : IFilterFactory
         where TEntity : IFiltered<TEntity>
     {
         TEntity.FilteredBy.TryGetValue(context.PropertyName,
-                                       out Func<HashSet<string>, Expression<Func<TEntity, bool>>>? filterFunction);
+                                       out Func<HashSet<string>,
+                                           Expression<Func<TEntity, bool>>>? filterFunction);
 
         if (filterFunction is null)
         {
@@ -28,7 +29,7 @@ public class FilterFactory : IFilterFactory
 
         try
         {
-            var filterExpression = filterFunction(context.Filters);
+            Expression<Func<TEntity, bool>> filterExpression = filterFunction(context.Filters);
             return source.Where(filterExpression);
         }
         catch (Exception)

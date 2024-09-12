@@ -15,7 +15,9 @@ public class RangeFactory : IRangeFactory
         where TEntity : IRanged<TEntity>
     {
         TEntity.RangedBy.TryGetValue(context.PropertyName,
-                                     out Func<string, string, Expression<Func<TEntity, bool>>>? rangeFunction);
+                                     out Func<string,
+                                         string,
+                                         Expression<Func<TEntity, bool>>>? rangeFunction);
 
         if (rangeFunction is null)
         {
@@ -28,7 +30,7 @@ public class RangeFactory : IRangeFactory
 
         try
         {
-            var rangeExpression = rangeFunction(context.Start, context.End);
+            Expression<Func<TEntity, bool>> rangeExpression = rangeFunction(context.Start, context.End);
             return source.Where(rangeExpression);
         }
         catch (Exception)

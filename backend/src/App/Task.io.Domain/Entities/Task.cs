@@ -32,16 +32,19 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
             { "createdDate", (Expression<Func<Task, DateTime>>)(ent => ent.CreatedAt) },
         });
 
-    public static ReadOnlyDictionary<string, Func<HashSet<string>, Expression<Func<Task, bool>>>> FilteredBy { get; } = new(
+    public static ReadOnlyDictionary<string,
+        Func<HashSet<string>,
+            Expression<
+                Func<Task, bool>>>> FilteredBy { get; } = new(
         new Dictionary<string, Func<HashSet<string>, Expression<Func<Task, bool>>>>
         {
             {
                 "priority", filters =>
-                    entity => filters.Select(Enum.Parse<Priority>).ToList().Contains(entity.Priority)
+                    entity => filters.Select(filter => Enum.Parse<Priority>(filter, true)).ToList().Contains(entity.Priority)
             },
             {
                 "status", filters =>
-                    entity => filters.Select(Enum.Parse<Status>).Contains(entity.Status)
+                    entity => filters.Select(filter => Enum.Parse<Status>(filter, true)).Contains(entity.Status)
             },
             {
                 "dueDate", filters => entity =>
@@ -59,7 +62,10 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
             }
         });
 
-    public static ReadOnlyDictionary<string, Func<string, string, Expression<Func<Task, bool>>>> RangedBy { get; } = new(
+    public static ReadOnlyDictionary<string,
+        Func<string,
+            string,
+            Expression<Func<Task, bool>>>> RangedBy { get; } = new(
         new Dictionary<string, Func<string, string, Expression<Func<Task, bool>>>>
         {
             {

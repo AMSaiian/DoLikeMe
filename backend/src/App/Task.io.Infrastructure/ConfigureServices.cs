@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Task.io.Application.Common.Interfaces;
 using Task.io.Infrastructure.Persistence;
 
 namespace Task.io.Infrastructure;
@@ -34,7 +35,8 @@ public static class ConfigureServices
                     .UseNpgsql(connectionString)
                     .EnableSensitiveDataLogging(false)
                     .AddInterceptors(provider.GetRequiredService<SaveChangesInterceptor>());
-            });
+            })
+            .AddScoped<IAppDbContext, AppDbContext>();
 
         return services;
     }
