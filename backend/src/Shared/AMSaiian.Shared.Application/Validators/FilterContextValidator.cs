@@ -10,7 +10,7 @@ public class FilterContextValidator : AbstractValidator<FilterContext>
         RuleFor(context => context.PropertyName)
             .NotEmpty();
 
-        RuleFor(context => context.Filters)
+        RuleFor(context => context.Values)
             .NotEmpty();
     }
 }

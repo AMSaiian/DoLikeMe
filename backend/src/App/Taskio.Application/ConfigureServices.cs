@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using AMSaiian.Shared.Application.Behaviours;
+using AMSaiian.Shared.Application.Factories;
+using AMSaiian.Shared.Application.Interfaces;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +14,8 @@ public static class ConfigureServices
         services
             .AddHandlersAndBehaviour()
             .AddFluentValidators()
-            .AddMapping();
+            .AddMapping()
+            .AddCustomServices();
 
         return services;
     }
@@ -31,7 +34,8 @@ public static class ConfigureServices
 
     private static IServiceCollection AddFluentValidators(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
+            .AddValidatorsFromAssembly(Assembly.Load("AMSaiian.Shared.Application"));
 
         return services;
     }
@@ -40,6 +44,16 @@ public static class ConfigureServices
     {
         services.AddAutoMapper(configuration =>
                                    configuration.AddMaps(Assembly.GetExecutingAssembly()));
+
+        return services;
+    }
+
+    private static IServiceCollection AddCustomServices(this IServiceCollection services)
+    {
+        services
+            .AddSingleton<IOrderFactory, OrderFactory>()
+            .AddSingleton<IRangeFactory, RangeFactory>()
+            .AddSingleton<IFilterFactory, FilterFactory>();
 
         return services;
     }

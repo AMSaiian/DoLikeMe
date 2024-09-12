@@ -1,4 +1,6 @@
-﻿using AMSaiian.Shared.Infrastructure.Interceptors;
+﻿using AMSaiian.Shared.Application.Interfaces;
+using AMSaiian.Shared.Infrastructure.Interceptors;
+using AMSaiian.Shared.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,7 @@ public static class ConfigureServices
                     .EnableSensitiveDataLogging(false)
                     .AddInterceptors(provider.GetRequiredService<SaveChangesInterceptor>());
             })
+            .AddSingleton<IPaginationService, PaginationService>()
             .AddScoped<IAppDbContext, AppDbContext>();
 
         return services;
