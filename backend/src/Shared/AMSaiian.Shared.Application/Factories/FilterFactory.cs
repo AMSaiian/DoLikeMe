@@ -30,20 +30,7 @@ public class FilterFactory : IFilterFactory
             ]);
         }
 
-        try
-        {
-            Expression<Func<TEntity, bool>> filterExpression = filterFunction(context.Values);
-            return source.Where(filterExpression);
-        }
-        catch (Exception)
-        {
-            throw new ValidationException([
-                new ValidationFailure
-                {
-                    PropertyName = nameof(context.Values),
-                    ErrorMessage = ErrorTemplates.CantParseFilters
-                }
-            ]);
-        }
+        Expression<Func<TEntity, bool>> filterExpression = filterFunction(context.Values);
+        return source.Where(filterExpression);
     }
 }

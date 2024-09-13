@@ -1,12 +1,16 @@
 ﻿using AMSaiian.Shared.Application.Interfaces;
 using AMSaiian.Shared.Infrastructure.Interceptors;
 using AMSaiian.Shared.Infrastructure.Services;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Taskio.Application.Common.Interfaces;
 using Taskio.Infrastructure.Persistence;
+using Taskio.Infrastructure.Persistence.Seeding.Fakers;
+using Taskio.Infrastructure.Persistence.Seeding.Initializers;
+using Task = Taskio.Domain.Entities.Task;
 
 namespace Taskio.Infrastructure;
 
@@ -21,7 +25,8 @@ public static class ConfigureServices
                                ?? throw new ArgumentNullException(nameof(appConnectionStringName));
 
         services
-            .AddAppDbContext(connectionString);
+            .AddAppDbContext(connectionString)
+            .AddAppDbContextInitializer(seedingValue);
 
         return services;
     }
@@ -40,6 +45,18 @@ public static class ConfigureServices
             })
             .AddSingleton<IPaginationService, PaginationService>()
             .AddScoped<IAppDbContext, AppDbContext>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddAppDbContextInitializer(this IServiceCollection services,
+                                                                 int seedingValue)
+    {
+        Randomizer.Seed = new Random(seedingValue);
+
+        services
+            .AddScoped<IAppDbContextInitializer, AppDbContextInitializer>()
+            .AddScoped<Faker<Task>, TaskFaker>();
 
         return services;
     }

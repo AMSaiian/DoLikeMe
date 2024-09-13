@@ -31,21 +31,7 @@ public class RangeFactory : IRangeFactory
             ]);
         }
 
-        try
-        {
-            Expression<Func<TEntity, bool>> rangeExpression = rangeFunction(context.Start, context.End);
-            return source.Where(rangeExpression);
-        }
-        catch (Exception)
-        {
-            throw new ValidationException([
-                new ValidationFailure
-                {
-                    PropertyName =
-                        string.Join(' ', nameof(context.Start), nameof(context.End)),
-                    ErrorMessage = ErrorTemplates.CantParseRange
-                }
-            ]);
-        }
+        Expression<Func<TEntity, bool>> rangeExpression = rangeFunction(context.Start, context.End);
+        return source.Where(rangeExpression);
     }
 }

@@ -6,6 +6,9 @@ using Auth.Infrastructure.Common.Options;
 using Auth.Infrastructure.Identity.Services;
 using Auth.Infrastructure.Persistence;
 using Auth.Infrastructure.Persistence.Entities;
+using Auth.Infrastructure.Persistence.Seeding.Fakers;
+using Auth.Infrastructure.Persistence.Seeding.Initializers;
+using Bogus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -27,7 +30,8 @@ public static class ConfigureServices
 
         services
             .AddAuthServices(configuration)
-            .AddAppDbContext(connectionString);
+            .AddAppDbContext(connectionString)
+            .AddAppDbContextInitializer(seedingValue);
 
         return services;
     }
@@ -44,6 +48,18 @@ public static class ConfigureServices
                     .EnableSensitiveDataLogging(false)
                     .AddInterceptors(provider.GetRequiredService<SaveChangesInterceptor>());
             });
+
+        return services;
+    }
+
+    private static IServiceCollection AddAppDbContextInitializer(this IServiceCollection services,
+                                                                 int seedingValue)
+    {
+        Randomizer.Seed = new Random(seedingValue);
+
+        services
+            .AddScoped<IAppIdentityDbContextInitializer, AppIdentityDbContextInitializer>()
+            .AddScoped<Faker<AuthUser>, AuthUserFaker>();
 
         return services;
     }

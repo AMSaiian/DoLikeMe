@@ -39,12 +39,13 @@ public static class ApiControllerExtensions
     {
         requestOptions ??= new RequestQueryOptions();
 
-        if (query.PropertyName is null)
+        if (query.IsDescending is null
+         || query.PropertyName is null)
         {
             query = new OrderQuery
             {
-                PropertyName = defaultPropertyName,
-                IsDescending = requestOptions.IsDescendingDefault
+                PropertyName = query.PropertyName ?? defaultPropertyName,
+                IsDescending = query.IsDescending ?? requestOptions.IsDescendingDefault
             };
         }
 

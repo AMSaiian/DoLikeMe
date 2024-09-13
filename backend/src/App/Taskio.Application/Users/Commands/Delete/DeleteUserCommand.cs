@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Taskio.Application.Common.Constants;
 using Taskio.Application.Common.Interfaces;
 using Taskio.Domain.Entities;
-using Task = System.Threading.Tasks.Task;
 
 namespace Taskio.Application.Users.Commands.Delete;
 

@@ -94,7 +94,7 @@ public class UsersController(
                                                   [FromQuery] RangeQuery range,
                                                   CancellationToken cancellationToken = default)
     {
-        const string defaultOrderPropertyName = TaskConstants.OrderedBy.Title;
+        const string defaultOrderPropertyName = TaskConstants.OrderedBy.CreatedDate;
 
         PaginationContext paginationContext = new()
         {
