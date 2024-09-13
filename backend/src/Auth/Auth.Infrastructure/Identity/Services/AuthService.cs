@@ -12,9 +12,10 @@ using UnauthorizedAccessException = AMSaiian.Shared.Application.Exceptions.Unaut
 
 namespace Auth.Infrastructure.Identity.Services;
 
-public class AuthService(ITokenProvider tokenProvider,
-                         UserManager<AuthUser> userManager,
-                         IUserClaimsPrincipalFactory<AuthUser> claimsFactory)
+public class AuthService(
+    ITokenProvider tokenProvider,
+    UserManager<AuthUser> userManager,
+    IUserClaimsPrincipalFactory<AuthUser> claimsFactory)
     : IAuthService
 {
     private readonly ITokenProvider _tokenProvider = tokenProvider;
@@ -65,8 +66,8 @@ public class AuthService(ITokenProvider tokenProvider,
         }
 
         AuthUser updatingUser = await _userManager.Users
-            .SingleOrDefaultAsync(u => u.Id == user.Id,
-                                  cancellationToken)
+                                    .SingleOrDefaultAsync(u => u.Id == user.Id,
+                                                                              cancellationToken)
                              ?? throw new NotFoundException(
                                     string.Format(ErrorMessagesConstants.UserNotFound,
                                                   user.Id));
@@ -95,8 +96,8 @@ public class AuthService(ITokenProvider tokenProvider,
     public async Task ChangePassword(UpdateUserPasswordDto user, CancellationToken cancellationToken = default)
     {
         AuthUser updatingUser = await _userManager.Users
-            .SingleOrDefaultAsync(u => u.Id == user.Id,
-                                  cancellationToken)
+                                    .SingleOrDefaultAsync(u => u.Id == user.Id,
+                                                          cancellationToken)
                              ?? throw new NotFoundException(
                                     string.Format(ErrorMessagesConstants.UserNotFound,
                                                   user.Id));
@@ -146,8 +147,8 @@ public class AuthService(ITokenProvider tokenProvider,
     public async Task DeleteUser(DeleteUserDto user, CancellationToken cancellationToken = default)
     {
         AuthUser deletingUser = await _userManager.Users
-            .FirstOrDefaultAsync(u => u.Id == user.Id,
-                                 cancellationToken)
+                                    .FirstOrDefaultAsync(u => u.Id == user.Id,
+                                                         cancellationToken)
                              ?? throw new NotFoundException(
                                     string.Format(ErrorMessagesConstants.UserNotFound,
                                                   user.Id));
@@ -175,6 +176,4 @@ public class AuthService(ITokenProvider tokenProvider,
 
     private Task<bool> IsEmailExists(string? email, CancellationToken cancellationToken = default)
         => _userManager.Users.AnyAsync(u => u.Email == email, cancellationToken);
-
-
 }

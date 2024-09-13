@@ -14,9 +14,10 @@ public record GetDetailedTaskQuery : IRequest<TaskFullDto>
     public required Guid Id { get; init; }
 }
 
-public class GetDetailedTaskHandler(ICurrentUserService currentUser,
-                                    IAppDbContext dbContext,
-                                    IMapper mapper)
+public class GetDetailedTaskHandler(
+    ICurrentUserService currentUser,
+    IAppDbContext dbContext,
+    IMapper mapper)
     : IRequestHandler<GetDetailedTaskQuery, TaskFullDto>
 {
     private readonly ICurrentUserService _currentUser = currentUser;
@@ -28,13 +29,13 @@ public class GetDetailedTaskHandler(ICurrentUserService currentUser,
         Guid authUserId = _currentUser.GetUserIdOrThrow();
 
         Domain.Entities.Task task = await _dbContext.Tasks
-                        .AsNoTracking()
-                        .Include(t => t.User)
-                        .FirstOrDefaultAsync(t => t.Id == request.Id,
-                                             cancellationToken)
-                 ?? throw new NotFoundException(
-                        string.Format(ErrorMessagesConstants.TaskNotFound,
-                                      request.Id));
+                                        .AsNoTracking()
+                                        .Include(t => t.User)
+                                        .FirstOrDefaultAsync(t => t.Id == request.Id,
+                                                             cancellationToken)
+                                 ?? throw new NotFoundException(
+                                        string.Format(ErrorMessagesConstants.TaskNotFound,
+                                                      request.Id));
 
         if (task.User.AuthId != authUserId)
         {

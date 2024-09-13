@@ -10,8 +10,8 @@ public static class ErrorMessagesConstants
 
     public static readonly string TaskNotFound = "Task with provided id: {0} not found";
 
-    public static readonly string ForbiddenAccessNotOwnedResource = "Can't access resource which is not owned by this account";
+    public static readonly string ForbiddenAccessNotOwnedResource =
+        "Can't access resource which is not owned by this account";
 
     public static readonly string ForbiddenCreateTasksForAnotherUser = "Can't create tasks for another user";
-
 }

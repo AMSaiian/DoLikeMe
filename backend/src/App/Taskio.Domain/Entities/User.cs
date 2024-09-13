@@ -9,5 +9,6 @@ public class User : BaseEntity
         get { return _tasks ??= []; }
         set => _tasks = value;
     }
+
     private List<Task>? _tasks;
 }

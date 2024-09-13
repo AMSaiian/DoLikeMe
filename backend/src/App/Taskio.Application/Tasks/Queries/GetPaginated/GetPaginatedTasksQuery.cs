@@ -21,12 +21,13 @@ public record GetPaginatedTasksQuery : IRequest<Paginated<TaskShortDto>>
     public RangeContext? RangeContext { get; init; }
 }
 
-public class GetPaginatedTasksHandler(ICurrentUserService currentUser,
-                                      IAppDbContext dbContext,
-                                      IMapper mapper,
-                                      IPaginationService paginationService,
-                                      IFilterFactory filterFactory,
-                                      IRangeFactory rangeFactory)
+public class GetPaginatedTasksHandler(
+    ICurrentUserService currentUser,
+    IAppDbContext dbContext,
+    IMapper mapper,
+    IPaginationService paginationService,
+    IFilterFactory filterFactory,
+    IRangeFactory rangeFactory)
     : IRequestHandler<GetPaginatedTasksQuery, Paginated<TaskShortDto>>
 {
     private readonly ICurrentUserService _currentUser = currentUser;

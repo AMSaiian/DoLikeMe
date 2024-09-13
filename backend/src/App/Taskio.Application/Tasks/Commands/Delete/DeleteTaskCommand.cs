@@ -15,9 +15,10 @@ public record DeleteTaskCommand : IRequest
     public required Guid Id { get; init; }
 }
 
-public class DeleteTaskHandler(IAppDbContext dbContext,
-                               ICurrentUserService currentUserService,
-                               ILogger<DeleteTaskHandler> logger)
+public class DeleteTaskHandler(
+    IAppDbContext dbContext,
+    ICurrentUserService currentUserService,
+    ILogger<DeleteTaskHandler> logger)
     : IRequestHandler<DeleteTaskCommand>
 {
     private readonly IAppDbContext _dbContext = dbContext;

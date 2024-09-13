@@ -17,10 +17,11 @@ public record DeleteUserCommand : IRequest
     public required string ConfirmPassword { get; init; }
 }
 
-public class DeleteUserHandler(IAuthService authService,
-                               IMapper mapper,
-                               ICurrentUserService currentUser,
-                               ILogger<UpdateProfileInfoHandler> logger)
+public class DeleteUserHandler(
+    IAuthService authService,
+    IMapper mapper,
+    ICurrentUserService currentUser,
+    ILogger<UpdateProfileInfoHandler> logger)
     : IRequestHandler<DeleteUserCommand>
 {
     private readonly IAuthService _authService = authService;

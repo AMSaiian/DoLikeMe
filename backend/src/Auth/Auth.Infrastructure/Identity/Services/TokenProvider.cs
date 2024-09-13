@@ -7,8 +7,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Auth.Infrastructure.Identity.Services;
 
-public class TokenProvider(IOptionsSnapshot<TokenProviderOptions> options,
-                           JsonWebTokenHandler tokenHandler)
+public class TokenProvider(
+    IOptionsSnapshot<TokenProviderOptions> options,
+    JsonWebTokenHandler tokenHandler)
     : ITokenProvider
 {
     private readonly IOptionsSnapshot<TokenProviderOptions> _options = options;

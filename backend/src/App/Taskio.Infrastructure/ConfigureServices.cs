@@ -13,9 +13,9 @@ namespace Taskio.Infrastructure;
 public static class ConfigureServices
 {
     public static IServiceCollection AddApplicationInfrastructure(this IServiceCollection services,
-                                                       IConfigurationManager configuration,
-                                                       string appConnectionStringName,
-                                                       int seedingValue = 42)
+                                                                  IConfigurationManager configuration,
+                                                                  string appConnectionStringName,
+                                                                  int seedingValue = 42)
     {
         string connectionString = configuration.GetConnectionString(appConnectionStringName)
                                ?? throw new ArgumentNullException(nameof(appConnectionStringName));

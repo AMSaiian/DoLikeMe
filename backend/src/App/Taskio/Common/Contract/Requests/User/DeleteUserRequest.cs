@@ -10,8 +10,7 @@ public record DeleteUserRequest
     public required string Password
     {
         get => _password;
-        [MemberNotNull(nameof(_password))]
-        init => _password = value.Trim();
+        [MemberNotNull(nameof(_password))] init => _password = value.Trim();
     }
 
     public required string ConfirmPassword

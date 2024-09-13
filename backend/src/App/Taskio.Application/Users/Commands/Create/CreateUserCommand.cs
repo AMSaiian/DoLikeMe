@@ -14,9 +14,10 @@ public record CreateUserCommand : IRequest<Guid>
     public required Guid AuthId { get; init; }
 }
 
-public class CreateUserHandler(IAppDbContext dbContext,
-                                      IMapper mapper,
-                                      ILogger<CreateUserHandler> logger)
+public class CreateUserHandler(
+    IAppDbContext dbContext,
+    IMapper mapper,
+    ILogger<CreateUserHandler> logger)
     : IRequestHandler<CreateUserCommand, Guid>
 {
     private readonly IAppDbContext _dbContext = dbContext;

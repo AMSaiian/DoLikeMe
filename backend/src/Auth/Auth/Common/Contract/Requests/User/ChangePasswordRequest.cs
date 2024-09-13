@@ -11,15 +11,13 @@ public record ChangePasswordRequest
     public required string OldPassword
     {
         get => _oldPassword;
-        [MemberNotNull(nameof(_oldPassword))]
-        init => _oldPassword = value.Trim();
+        [MemberNotNull(nameof(_oldPassword))] init => _oldPassword = value.Trim();
     }
 
     public required string NewPassword
     {
         get => _newPassword;
-        [MemberNotNull(nameof(_newPassword))]
-        init => _newPassword = value.Trim();
+        [MemberNotNull(nameof(_newPassword))] init => _newPassword = value.Trim();
     }
 
     public required string NewPasswordConfirmation

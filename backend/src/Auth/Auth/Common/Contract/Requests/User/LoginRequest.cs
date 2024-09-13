@@ -17,4 +17,3 @@ public record LoginRequest
         init => _password = value?.Trim();
     }
 }
-

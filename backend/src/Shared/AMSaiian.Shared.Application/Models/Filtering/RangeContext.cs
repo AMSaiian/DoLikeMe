@@ -6,4 +6,3 @@ public record RangeContext
     public required string Start { get; init; }
     public required string End { get; init; }
 }
-

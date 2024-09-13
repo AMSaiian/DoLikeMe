@@ -6,8 +6,9 @@ namespace AMSaiian.Shared.Web.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public abstract class ApiControllerBase(ISender mediator,
-                                        IMapper mapper)
+public abstract class ApiControllerBase(
+    ISender mediator,
+    IMapper mapper)
     : ControllerBase
 {
     protected readonly ISender _mediator = mediator;

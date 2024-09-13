@@ -11,8 +11,7 @@ public record CreateTaskRequest
     public required string Title
     {
         get => _title;
-        [MemberNotNull(nameof(_title))]
-        init => _title = value.Trim();
+        [MemberNotNull(nameof(_title))] init => _title = value.Trim();
     }
 
     public string? Description

@@ -15,9 +15,10 @@ public record RegisterUserCommand : IRequest<Guid>
     public required string ConfirmPassword { get; init; }
 }
 
-public sealed class RegisterUserHandler(IAuthService authService,
-                                        IMapper mapper,
-                                        ILogger<RegisterUserHandler> logger)
+public sealed class RegisterUserHandler(
+    IAuthService authService,
+    IMapper mapper,
+    ILogger<RegisterUserHandler> logger)
     : IRequestHandler<RegisterUserCommand, Guid>
 {
     private readonly IAuthService _authService = authService;

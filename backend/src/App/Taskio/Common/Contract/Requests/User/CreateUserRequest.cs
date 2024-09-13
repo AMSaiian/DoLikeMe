@@ -12,22 +12,19 @@ public record CreateUserRequest
     public required string Name
     {
         get => _name;
-        [MemberNotNull(nameof(_name))]
-        init => _name = value.Trim();
+        [MemberNotNull(nameof(_name))] init => _name = value.Trim();
     }
 
     public required string Email
     {
         get => _email;
-        [MemberNotNull(nameof(_email))]
-        init => _email = value.Trim();
+        [MemberNotNull(nameof(_email))] init => _email = value.Trim();
     }
 
     public required string Password
     {
         get => _password;
-        [MemberNotNull(nameof(_password))]
-        init => _password = value.Trim();
+        [MemberNotNull(nameof(_password))] init => _password = value.Trim();
     }
 
     public required string ConfirmPassword

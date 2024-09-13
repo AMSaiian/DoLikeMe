@@ -35,6 +35,7 @@ public struct Undefinable<TValue>
             {
                 _value = default!;
             }
+
             _isDefined = value;
         }
     }

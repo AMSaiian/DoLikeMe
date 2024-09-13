@@ -14,9 +14,10 @@ public record DeleteUserCommand : IRequest<Guid>
     public required Guid Id { get; init; }
 }
 
-public class DeleteUserHandler(IAppDbContext dbContext,
-                               ICurrentUserService currentUser,
-                               ILogger<DeleteUserHandler> logger)
+public class DeleteUserHandler(
+    IAppDbContext dbContext,
+    ICurrentUserService currentUser,
+    ILogger<DeleteUserHandler> logger)
     : IRequestHandler<DeleteUserCommand, Guid>
 {
     private readonly IAppDbContext _dbContext = dbContext;
@@ -28,7 +29,7 @@ public class DeleteUserHandler(IAppDbContext dbContext,
         Guid currentUserId = _currentUser.GetUserIdOrThrow();
 
         User deletingUser = await _dbContext.Users.FindAsync(request.Id, cancellationToken)
-                          ?? throw new NotFoundException(
+                         ?? throw new NotFoundException(
                                 string.Format(ErrorMessagesConstants.UserNotFound,
                                               request.Id));
 

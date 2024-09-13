@@ -17,10 +17,11 @@ public record ChangePasswordCommand : IRequest
     public required string NewPasswordConfirmation { get; init; }
 }
 
-public class ChangePasswordHandler(IAuthService authService,
-                                   IMapper mapper,
-                                   ICurrentUserService currentUser,
-                                   ILogger<ChangePasswordHandler> logger)
+public class ChangePasswordHandler(
+    IAuthService authService,
+    IMapper mapper,
+    ICurrentUserService currentUser,
+    ILogger<ChangePasswordHandler> logger)
     : IRequestHandler<ChangePasswordCommand>
 {
     private readonly IAuthService _authService = authService;

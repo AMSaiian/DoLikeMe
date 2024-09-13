@@ -13,14 +13,14 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     public ApiExceptionFilterAttribute()
     {
         _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
-            {
-                { typeof(ValidationException), HandleValidationException },
-                { typeof(NotFoundException), HandleNotFoundException },
-                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
-                { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
-                { typeof(ConflictException), HandleConflictException },
-                { typeof(UnprocessableException), HandleUnprocessableException },
-            };
+        {
+            { typeof(ValidationException), HandleValidationException },
+            { typeof(NotFoundException), HandleNotFoundException },
+            { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
+            { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+            { typeof(ConflictException), HandleConflictException },
+            { typeof(UnprocessableException), HandleUnprocessableException },
+        };
     }
 
 

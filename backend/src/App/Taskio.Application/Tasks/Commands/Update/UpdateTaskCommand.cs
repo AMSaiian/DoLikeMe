@@ -22,10 +22,11 @@ public record UpdateTaskCommand : IRequest
     public Priority? Priority { get; init; }
 }
 
-public class UpdateTaskHandler(IAppDbContext dbContext,
-                               ICurrentUserService currentUserService,
-                               IMapper mapper,
-                               ILogger<UpdateTaskHandler> logger)
+public class UpdateTaskHandler(
+    IAppDbContext dbContext,
+    ICurrentUserService currentUserService,
+    IMapper mapper,
+    ILogger<UpdateTaskHandler> logger)
     : IRequestHandler<UpdateTaskCommand>
 {
     private readonly IAppDbContext _dbContext = dbContext;

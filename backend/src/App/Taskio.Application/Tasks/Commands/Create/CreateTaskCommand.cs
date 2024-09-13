@@ -24,10 +24,11 @@ public record CreateTaskCommand : IRequest<Guid>
     public required Guid UserId { get; init; }
 }
 
-public class CreateTaskHandler(IAppDbContext dbContext,
-                               IMapper mapper,
-                               ICurrentUserService currentUserService,
-                               ILogger<CreateUserHandler> logger)
+public class CreateTaskHandler(
+    IAppDbContext dbContext,
+    IMapper mapper,
+    ICurrentUserService currentUserService,
+    ILogger<CreateUserHandler> logger)
     : IRequestHandler<CreateTaskCommand, Guid>
 {
     private readonly IAppDbContext _dbContext = dbContext;
@@ -41,9 +42,9 @@ public class CreateTaskHandler(IAppDbContext dbContext,
             .GetUserIdOrThrow();
 
         User localUser = await _dbContext.Users
-            .FirstOrDefaultAsync(u => u.AuthId == authUserId,
-                                 cancellationToken)
-                       ?? throw new NotFoundException(ErrorMessagesConstants.UserNotFound);
+                             .FirstOrDefaultAsync(u => u.AuthId == authUserId,
+                                                  cancellationToken)
+                      ?? throw new NotFoundException(ErrorMessagesConstants.UserNotFound);
 
         if (localUser.Id != request.UserId)
         {

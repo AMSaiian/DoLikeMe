@@ -10,5 +10,6 @@ public static class ValidationConstants
 
     public static readonly string UserPasswordRegex =
         @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$";
+
     public static readonly string UserNameRegex = @"^[a-zA-Z0-9\-._@+]+$";
 }

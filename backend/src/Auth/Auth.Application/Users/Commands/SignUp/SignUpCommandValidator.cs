@@ -16,4 +16,3 @@ public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
             .Matches(ValidationConstants.UserPasswordRegex);
     }
 }
-

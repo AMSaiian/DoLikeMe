@@ -21,11 +21,14 @@ public class RangeFactory : IRangeFactory
 
         if (rangeFunction is null)
         {
-            throw new ValidationException([ new ValidationFailure
-            {
-                PropertyName = nameof(context.PropertyName),
-                ErrorMessage = string.Format(ErrorTemplates.CantRanged, context.PropertyName)
-            }]);
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    PropertyName = nameof(context.PropertyName),
+                    ErrorMessage =
+                        string.Format(ErrorTemplates.CantRanged, context.PropertyName)
+                }
+            ]);
         }
 
         try
@@ -35,11 +38,14 @@ public class RangeFactory : IRangeFactory
         }
         catch (Exception)
         {
-            throw new ValidationException([ new ValidationFailure
-            {
-                PropertyName = string.Join(' ', nameof(context.Start), nameof(context.End)),
-                ErrorMessage = ErrorTemplates.CantParseRange
-            }]);
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    PropertyName =
+                        string.Join(' ', nameof(context.Start), nameof(context.End)),
+                    ErrorMessage = ErrorTemplates.CantParseRange
+                }
+            ]);
         }
     }
 }

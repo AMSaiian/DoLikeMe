@@ -13,8 +13,9 @@ using Taskio.Common.Contract.Requests.Task;
 
 namespace Taskio.Controllers;
 
-public class TasksController(ISender mediator,
-                             IMapper mapper)
+public class TasksController(
+    ISender mediator,
+    IMapper mapper)
     : ApiControllerBase(mediator, mapper)
 {
     [Authorize(Policy = TaskioApplicationScopes.TaskResourceScopes.GetOwnedTaskDetails)]

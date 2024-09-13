@@ -20,9 +20,10 @@ using Taskio.Domain.Constants;
 
 namespace Taskio.Controllers;
 
-public class UsersController(ISender mediator,
-                             IMapper mapper,
-                             IOptions<RequestQueryOptions> queryOptions)
+public class UsersController(
+    ISender mediator,
+    IMapper mapper,
+    IOptions<RequestQueryOptions> queryOptions)
     : ApiControllerBase(mediator, mapper)
 {
     [HttpPost]

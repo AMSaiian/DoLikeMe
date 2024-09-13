@@ -16,10 +16,11 @@ public record UpdateProfileInfoCommand : IRequest
     public string? NewEmail { get; init; }
 }
 
-public record UpdateProfileInfoHandler(IAuthService authService,
-                                       IMapper mapper,
-                                       ICurrentUserService currentUser,
-                                       ILogger<UpdateProfileInfoHandler> logger)
+public class UpdateProfileInfoHandler(
+    IAuthService authService,
+    IMapper mapper,
+    ICurrentUserService currentUser,
+    ILogger<UpdateProfileInfoHandler> logger)
     : IRequestHandler<UpdateProfileInfoCommand>
 {
     private readonly IAuthService _authService = authService;

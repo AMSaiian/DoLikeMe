@@ -20,11 +20,14 @@ public class FilterFactory : IFilterFactory
 
         if (filterFunction is null)
         {
-            throw new ValidationException([ new ValidationFailure
-            {
-                PropertyName = nameof(context.PropertyName),
-                ErrorMessage = string.Format(ErrorTemplates.CantFiltered, context.PropertyName)
-            }]);
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    PropertyName = nameof(context.PropertyName),
+                    ErrorMessage =
+                        string.Format(ErrorTemplates.CantFiltered, context.PropertyName)
+                }
+            ]);
         }
 
         try
@@ -34,11 +37,13 @@ public class FilterFactory : IFilterFactory
         }
         catch (Exception)
         {
-            throw new ValidationException([ new ValidationFailure
-            {
-                PropertyName = nameof(context.Values),
-                ErrorMessage = ErrorTemplates.CantParseFilters
-            }]);
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    PropertyName = nameof(context.Values),
+                    ErrorMessage = ErrorTemplates.CantParseFilters
+                }
+            ]);
         }
     }
 }

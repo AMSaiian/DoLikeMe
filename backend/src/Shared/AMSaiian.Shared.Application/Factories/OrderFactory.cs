@@ -17,11 +17,14 @@ public class OrderFactory : IOrderFactory
 
         if (orderExpression is null)
         {
-            throw new ValidationException([ new ValidationFailure
-            {
-                PropertyName = nameof(context.PropertyName),
-                ErrorMessage = string.Format(ErrorTemplates.CantOrder, context.PropertyName)
-            }]);
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    PropertyName = nameof(context.PropertyName),
+                    ErrorMessage =
+                        string.Format(ErrorTemplates.CantOrder, context.PropertyName)
+                }
+            ]);
         }
 
         IOrderedQueryable<TEntity> sortedQuery = context.IsDescending

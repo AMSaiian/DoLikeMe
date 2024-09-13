@@ -9,8 +9,9 @@ using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace Auth.Infrastructure.Identity.Services;
 
-public class TaskioClaimsPrincipalFactory(IOptions<IdentityOptions> baseOptions,
-                                          IOptionsSnapshot<TokenProviderOptions> options)
+public class TaskioClaimsPrincipalFactory(
+    IOptions<IdentityOptions> baseOptions,
+    IOptionsSnapshot<TokenProviderOptions> options)
     : IUserClaimsPrincipalFactory<AuthUser>
 {
     private readonly IOptions<IdentityOptions> _baseOptions = baseOptions;
