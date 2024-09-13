@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Constants\.gitkeep\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj" />
     <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
     <ProjectReference Include="..\Taskio.Application\Taskio.Application.csproj" />

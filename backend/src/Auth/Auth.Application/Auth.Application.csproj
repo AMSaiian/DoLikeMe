@@ -14,10 +14,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Users\Queries\.gitkeep\" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Application\AMSaiian.Shared.Application.csproj" />
   </ItemGroup>
 
