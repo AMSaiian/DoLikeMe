@@ -4,7 +4,7 @@ using Taskio.Domain.Entities;
 
 namespace Taskio.Application.Common.Mapping;
 
-public class UserProfile : Profile
+public sealed class UserProfile : Profile
 {
     public UserProfile()
     {

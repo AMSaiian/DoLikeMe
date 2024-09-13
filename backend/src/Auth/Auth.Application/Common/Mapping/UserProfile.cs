@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace Auth.Application.Common.Mapping;
 
-public class UserProfile : Profile
+public sealed class UserProfile : Profile
 {
     public UserProfile()
     {

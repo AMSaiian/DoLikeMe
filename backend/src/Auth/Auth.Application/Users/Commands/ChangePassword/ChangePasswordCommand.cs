@@ -17,7 +17,7 @@ public record ChangePasswordCommand : IRequest
     public required string NewPasswordConfirmation { get; init; }
 }
 
-public class ChangePasswordHandler(
+public sealed class ChangePasswordHandler(
     IAuthService authService,
     IMapper mapper,
     ICurrentUserService currentUser,

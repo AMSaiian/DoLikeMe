@@ -22,7 +22,7 @@ public record UpdateTaskCommand : IRequest
     public Priority? Priority { get; init; }
 }
 
-public class UpdateTaskHandler(
+public sealed class UpdateTaskHandler(
     IAppDbContext dbContext,
     ICurrentUserService currentUserService,
     IMapper mapper,

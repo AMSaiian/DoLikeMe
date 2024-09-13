@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace AMSaiian.Shared.Application.Validators;
 
-public class OrderContextValidator : AbstractValidator<OrderContext>
+public sealed class OrderContextValidator : AbstractValidator<OrderContext>
 {
     public OrderContextValidator()
     {

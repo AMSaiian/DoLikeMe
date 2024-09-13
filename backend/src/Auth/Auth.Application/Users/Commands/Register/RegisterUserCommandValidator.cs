@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Auth.Application.Users.Commands.Register;
 
-public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
+public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
 {
     public RegisterUserCommandValidator()
     {

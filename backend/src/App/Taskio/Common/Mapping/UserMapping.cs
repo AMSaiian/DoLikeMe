@@ -5,7 +5,7 @@ using Taskio.Common.Contract.Requests.User;
 
 namespace Taskio.Common.Mapping;
 
-public class UserMapping : Profile
+public sealed class UserMapping : Profile
 {
     public UserMapping()
     {

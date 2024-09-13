@@ -3,7 +3,7 @@ using Taskio.Application.Common.Constants;
 
 namespace Taskio.Application.Tasks.Commands.Create;
 
-public class CreateTaskCommandValidator : AbstractValidator<CreateTaskCommand>
+public sealed class CreateTaskCommandValidator : AbstractValidator<CreateTaskCommand>
 {
     public CreateTaskCommandValidator()
     {

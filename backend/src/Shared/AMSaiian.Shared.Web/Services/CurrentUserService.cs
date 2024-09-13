@@ -8,7 +8,7 @@ public class CurrentUserService(IHttpContextAccessor httpContextAccessor) : ICur
 {
     private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
-    public Guid? UserId
+    public virtual Guid? UserId
     {
         get
         {
@@ -21,7 +21,7 @@ public class CurrentUserService(IHttpContextAccessor httpContextAccessor) : ICur
         }
     }
 
-    public Guid GetUserIdOrThrow()
+    public virtual Guid GetUserIdOrThrow()
     {
         string authId = _httpContextAccessor.HttpContext?
             .User

@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace AMSaiian.Shared.Application.Validators;
 
-public class RangeContextValidator : AbstractValidator<RangeContext>
+public sealed class RangeContextValidator : AbstractValidator<RangeContext>
 {
     public RangeContextValidator()
     {

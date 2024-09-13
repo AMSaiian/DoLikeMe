@@ -14,7 +14,7 @@ public record SignUpCommand : IRequest<TokenDto>
     public required string Password { get; init; }
 }
 
-public class SignUpHandler(
+public sealed class SignUpHandler(
     IAuthService authService,
     IMapper mapper,
     ILogger<SignUpHandler> logger)

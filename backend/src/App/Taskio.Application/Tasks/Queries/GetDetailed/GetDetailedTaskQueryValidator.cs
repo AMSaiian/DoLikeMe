@@ -2,7 +2,7 @@
 
 namespace Taskio.Application.Tasks.Queries.GetDetailed;
 
-public class GetDetailedTaskQueryValidator : AbstractValidator<GetDetailedTaskQuery>
+public sealed class GetDetailedTaskQueryValidator : AbstractValidator<GetDetailedTaskQuery>
 {
     public GetDetailedTaskQueryValidator()
     {

@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Taskio.Application.Tasks.Queries.GetPaginated;
 
-public class GetPaginatedTasksQueryValidator
+public sealed class GetPaginatedTasksQueryValidator
     : AbstractValidator<GetPaginatedTasksQuery>
 {
     public GetPaginatedTasksQueryValidator(IValidator<FilterContext> filterValidator,

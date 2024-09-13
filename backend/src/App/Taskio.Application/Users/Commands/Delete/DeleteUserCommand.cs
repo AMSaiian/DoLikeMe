@@ -14,7 +14,7 @@ public record DeleteUserCommand : IRequest<Guid>
     public required Guid Id { get; init; }
 }
 
-public class DeleteUserHandler(
+public sealed class DeleteUserHandler(
     IAppDbContext dbContext,
     ICurrentUserService currentUser,
     ILogger<DeleteUserHandler> logger)

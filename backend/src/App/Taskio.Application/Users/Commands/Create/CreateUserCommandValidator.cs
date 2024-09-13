@@ -2,7 +2,7 @@
 
 namespace Taskio.Application.Users.Commands.Create;
 
-public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {
     public CreateUserCommandValidator()
     {

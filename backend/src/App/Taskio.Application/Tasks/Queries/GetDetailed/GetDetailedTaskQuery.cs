@@ -14,7 +14,7 @@ public record GetDetailedTaskQuery : IRequest<TaskFullDto>
     public required Guid Id { get; init; }
 }
 
-public class GetDetailedTaskHandler(
+public sealed class GetDetailedTaskHandler(
     ICurrentUserService currentUser,
     IAppDbContext dbContext,
     IMapper mapper)

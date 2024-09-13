@@ -5,7 +5,7 @@ using AutoMapper;
 
 namespace AMSaiian.Shared.Web.Mapping;
 
-public class QueryProfile : Profile
+public sealed class QueryProfile : Profile
 {
     public QueryProfile()
     {

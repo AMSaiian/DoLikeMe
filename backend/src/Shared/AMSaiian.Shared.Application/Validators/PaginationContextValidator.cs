@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace AMSaiian.Shared.Application.Validators;
 
-public class PaginationContextValidator : AbstractValidator<PaginationContext>
+public sealed class PaginationContextValidator : AbstractValidator<PaginationContext>
 {
     public PaginationContextValidator(IValidator<OrderContext> orderContextValidator,
                                       IValidator<PageContext> pageContextValidator)

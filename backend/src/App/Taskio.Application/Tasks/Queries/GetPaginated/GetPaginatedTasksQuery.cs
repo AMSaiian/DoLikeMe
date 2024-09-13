@@ -21,7 +21,7 @@ public record GetPaginatedTasksQuery : IRequest<Paginated<TaskShortDto>>
     public RangeContext? RangeContext { get; init; }
 }
 
-public class GetPaginatedTasksHandler(
+public sealed class GetPaginatedTasksHandler(
     ICurrentUserService currentUser,
     IAppDbContext dbContext,
     IMapper mapper,

@@ -12,10 +12,10 @@ public class TokenProvider(
     JsonWebTokenHandler tokenHandler)
     : ITokenProvider
 {
-    private readonly IOptionsSnapshot<TokenProviderOptions> _options = options;
-    private readonly JsonWebTokenHandler _tokenHandler = tokenHandler;
+    protected readonly IOptionsSnapshot<TokenProviderOptions> _options = options;
+    protected readonly JsonWebTokenHandler _tokenHandler = tokenHandler;
 
-    public Task<string> CreateToken(ClaimsPrincipal principal, CancellationToken cancellationToken = default)
+    public virtual Task<string> CreateToken(ClaimsPrincipal principal, CancellationToken cancellationToken = default)
     {
         var descriptor = new SecurityTokenDescriptor
         {

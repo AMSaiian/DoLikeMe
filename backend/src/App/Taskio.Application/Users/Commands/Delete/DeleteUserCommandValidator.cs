@@ -2,7 +2,7 @@
 
 namespace Taskio.Application.Users.Commands.Delete;
 
-public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
+public sealed class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
 {
     public DeleteUserCommandValidator()
     {

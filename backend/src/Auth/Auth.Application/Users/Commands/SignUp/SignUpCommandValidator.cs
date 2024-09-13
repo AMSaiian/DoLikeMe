@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Auth.Application.Users.Commands.SignUp;
 
-public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
+public sealed class SignUpCommandValidator : AbstractValidator<SignUpCommand>
 {
     public SignUpCommandValidator()
     {

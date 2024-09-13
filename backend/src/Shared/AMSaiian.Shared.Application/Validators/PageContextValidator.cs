@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace AMSaiian.Shared.Application.Validators;
 
-public class PageContextValidator : AbstractValidator<PageContext>
+public sealed class PageContextValidator : AbstractValidator<PageContext>
 {
     public PageContextValidator()
     {

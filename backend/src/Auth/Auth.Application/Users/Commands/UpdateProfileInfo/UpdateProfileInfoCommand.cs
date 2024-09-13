@@ -16,7 +16,7 @@ public record UpdateProfileInfoCommand : IRequest
     public string? NewEmail { get; init; }
 }
 
-public class UpdateProfileInfoHandler(
+public sealed class UpdateProfileInfoHandler(
     IAuthService authService,
     IMapper mapper,
     ICurrentUserService currentUser,

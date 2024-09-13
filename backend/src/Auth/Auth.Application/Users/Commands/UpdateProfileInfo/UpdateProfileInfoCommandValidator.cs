@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Auth.Application.Users.Commands.UpdateProfileInfo;
 
-public class UpdateProfileInfoCommandValidator : AbstractValidator<UpdateProfileInfoCommand>
+public sealed class UpdateProfileInfoCommandValidator : AbstractValidator<UpdateProfileInfoCommand>
 {
     public UpdateProfileInfoCommandValidator()
     {

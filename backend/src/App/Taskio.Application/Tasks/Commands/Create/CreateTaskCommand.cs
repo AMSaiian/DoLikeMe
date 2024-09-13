@@ -24,7 +24,7 @@ public record CreateTaskCommand : IRequest<Guid>
     public required Guid UserId { get; init; }
 }
 
-public class CreateTaskHandler(
+public sealed class CreateTaskHandler(
     IAppDbContext dbContext,
     IMapper mapper,
     ICurrentUserService currentUserService,

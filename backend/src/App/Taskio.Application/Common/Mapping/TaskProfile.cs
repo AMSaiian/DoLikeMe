@@ -6,7 +6,7 @@ using Task = Taskio.Domain.Entities.Task;
 
 namespace Taskio.Application.Common.Mapping;
 
-public class TaskProfile : Profile
+public sealed class TaskProfile : Profile
 {
     public TaskProfile()
     {

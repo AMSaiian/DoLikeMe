@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace Auth.Common.Mapping;
 
-public class RequestMapping : Profile
+public sealed class RequestMapping : Profile
 {
     public RequestMapping()
     {

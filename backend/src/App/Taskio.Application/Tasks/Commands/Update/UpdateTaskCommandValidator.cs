@@ -3,7 +3,7 @@ using Taskio.Application.Common.Constants;
 
 namespace Taskio.Application.Tasks.Commands.Update;
 
-public class UpdateTaskCommandValidator : AbstractValidator<UpdateTaskCommand>
+public sealed class UpdateTaskCommandValidator : AbstractValidator<UpdateTaskCommand>
 {
     public UpdateTaskCommandValidator()
     {

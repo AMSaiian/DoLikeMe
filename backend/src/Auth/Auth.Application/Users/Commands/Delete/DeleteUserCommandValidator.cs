@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Auth.Application.Users.Commands.Delete;
 
-public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
+public sealed class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
 {
     public DeleteUserCommandValidator()
     {

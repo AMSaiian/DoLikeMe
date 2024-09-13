@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace AMSaiian.Shared.Application.Validators;
 
-public class FilterContextValidator : AbstractValidator<FilterContext>
+public sealed class FilterContextValidator : AbstractValidator<FilterContext>
 {
     public FilterContextValidator()
     {

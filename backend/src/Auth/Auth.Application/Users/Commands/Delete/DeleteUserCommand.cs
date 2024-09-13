@@ -17,7 +17,7 @@ public record DeleteUserCommand : IRequest
     public required string ConfirmPassword { get; init; }
 }
 
-public class DeleteUserHandler(
+public sealed class DeleteUserHandler(
     IAuthService authService,
     IMapper mapper,
     ICurrentUserService currentUser,

@@ -14,17 +14,17 @@ public class TaskioClaimsPrincipalFactory(
     IOptionsSnapshot<TokenProviderOptions> options)
     : IUserClaimsPrincipalFactory<AuthUser>
 {
-    private readonly IOptions<IdentityOptions> _baseOptions = baseOptions;
-    private readonly IOptionsSnapshot<TokenProviderOptions> _options = options;
+    protected readonly IOptions<IdentityOptions> _baseOptions = baseOptions;
+    protected readonly IOptionsSnapshot<TokenProviderOptions> _options = options;
 
-    public async Task<ClaimsPrincipal> CreateAsync(AuthUser user)
+    public virtual async Task<ClaimsPrincipal> CreateAsync(AuthUser user)
     {
         ClaimsIdentity claimsIdentity = await GenerateClaimsAsync(user);
 
         return new ClaimsPrincipal(claimsIdentity);
     }
 
-    private Task<ClaimsIdentity> GenerateClaimsAsync(AuthUser user)
+    protected virtual Task<ClaimsIdentity> GenerateClaimsAsync(AuthUser user)
     {
         List<Claim> claims =
         [
