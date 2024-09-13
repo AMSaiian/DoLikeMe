@@ -2,7 +2,7 @@
 
 namespace AMSaiian.Shared.Web.Contract.Queries;
 
-public record PaginationQuery
+public record PageQuery
 {
     public const string Prefix = "pagination";
 

@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq.Expressions;
 using AMSaiian.Shared.Domain.Interfaces;
+using Taskio.Domain.Constants;
 using Taskio.Domain.Enums;
 
 namespace Taskio.Domain.Entities;
@@ -25,11 +26,12 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
     public static ReadOnlyDictionary<string, dynamic> OrderedBy { get; } = new(
         new Dictionary<string, dynamic>
         {
-            { "title", (Expression<Func<Task, string>>)(ent => ent.Title) },
-            { "priority", (Expression<Func<Task, Priority>>)(ent => ent.Priority) },
-            { "status", (Expression<Func<Task, Status>>)(ent => ent.Status) },
-            { "dueDate", (Expression<Func<Task, DateTime?>>)(ent => ent.DueDate) },
-            { "createdDate", (Expression<Func<Task, DateTime>>)(ent => ent.CreatedAt) },
+            { TaskConstants.OrderedBy.Title, (Expression<Func<Task, string>>)(ent => ent.Title) },
+            { TaskConstants.OrderedBy.Priority, (Expression<Func<Task, Priority>>)(ent => ent.Priority) },
+            { TaskConstants.OrderedBy.Status, (Expression<Func<Task, Status>>)(ent => ent.Status) },
+            { TaskConstants.OrderedBy.DueDate, (Expression<Func<Task, DateTime?>>)(ent => ent.DueDate) },
+            { TaskConstants.OrderedBy.CreatedDate, (Expression<Func<Task, DateTime>>)(ent => ent.CreatedAt) },
+            { TaskConstants.OrderedBy.UpdatedDate, (Expression<Func<Task, DateTime?>>)(ent => ent.UpdatedAt) },
         });
 
     public static ReadOnlyDictionary<string,
@@ -39,15 +41,19 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
         new Dictionary<string, Func<HashSet<string>, Expression<Func<Task, bool>>>>
         {
             {
-                "priority", filters =>
-                    entity => filters.Select(filter => Enum.Parse<Priority>(filter, true)).ToList().Contains(entity.Priority)
+                TaskConstants.FilteredBy.Priority, filters =>
+                    entity => filters
+                        .Select(filter => Enum.Parse<Priority>(filter, true))
+                        .Contains(entity.Priority)
             },
             {
-                "status", filters =>
-                    entity => filters.Select(filter => Enum.Parse<Status>(filter, true)).Contains(entity.Status)
+                TaskConstants.FilteredBy.Status, filters =>
+                    entity => filters
+                        .Select(filter => Enum.Parse<Status>(filter, true))
+                        .Contains(entity.Status)
             },
             {
-                "dueDate", filters => entity =>
+                TaskConstants.FilteredBy.DueDate, filters => entity =>
                     entity.DueDate.HasValue
                  && filters
                         .Select(entry => DateTime
@@ -55,10 +61,18 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
                         .Contains(entity.DueDate.Value)
             },
             {
-                "createdDate", filters => entity => filters
+                TaskConstants.FilteredBy.CreatedDate, filters => entity => filters
                     .Select(entry => DateTime
                                 .Parse(entry, CultureInfo.InvariantCulture))
                     .Contains(entity.CreatedAt)
+            },
+            {
+                TaskConstants.FilteredBy.UpdatedDate, filters => entity =>
+                    entity.UpdatedAt.HasValue
+                 && filters
+                        .Select(entry => DateTime
+                                    .Parse(entry, CultureInfo.InvariantCulture))
+                        .Contains(entity.UpdatedAt.Value)
             }
         });
 
@@ -69,15 +83,20 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
         new Dictionary<string, Func<string, string, Expression<Func<Task, bool>>>>
         {
             {
-                "dueDate", (start, end) =>
+                TaskConstants.RangedBy.DueDate, (start, end) =>
                     entity => entity.DueDate.HasValue
                            && entity.DueDate >= DateTime.Parse(start, CultureInfo.InvariantCulture)
                            && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture)
             },
             {
-                "createdDate", (start, end) =>
-                    entity => entity.DueDate >= DateTime.Parse(start, CultureInfo.InvariantCulture)
-                           && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture)
+                TaskConstants.RangedBy.CreatedDate, (start, end) =>
+                    entity => entity.CreatedAt >= DateTime.Parse(start, CultureInfo.InvariantCulture)
+                           && entity.CreatedAt <= DateTime.Parse(end, CultureInfo.InvariantCulture)
+            },
+            {
+                TaskConstants.RangedBy.UpdatedDate, (start, end) =>
+                    entity => entity.UpdatedAt >= DateTime.Parse(start, CultureInfo.InvariantCulture)
+                           && entity.UpdatedAt <= DateTime.Parse(end, CultureInfo.InvariantCulture)
             }
         });
 }

@@ -5,16 +5,18 @@ public static class TaskioApplicationScopes
     public static readonly IList<string> DefaultScopes =
     [
         TaskResourceScopes.CreateTask,
-        TaskResourceScopes.UpdateTaskDetails,
-        TaskResourceScopes.UpdateTaskStatus,
-        TaskResourceScopes.UpdateTaskPriorityAndDeadlines
+        TaskResourceScopes.DeleteTask,
+        TaskResourceScopes.UpdateTask,
+        TaskResourceScopes.GetOwnedTasksList,
+        TaskResourceScopes.GetOwnedTaskDetails,
     ];
 
     public static class TaskResourceScopes
     {
+        public const string GetOwnedTasksList = "task-get-own-list";
+        public const string GetOwnedTaskDetails = "task-get-own-details";
         public const string CreateTask = "task-create";
-        public const string UpdateTaskDetails = "task-update";
-        public const string UpdateTaskStatus = "task-status-update";
-        public const string UpdateTaskPriorityAndDeadlines = "task-priority-deadlines-update";
+        public const string DeleteTask = "task-delete";
+        public const string UpdateTask = "task-update";
     }
 }

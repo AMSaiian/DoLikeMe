@@ -9,21 +9,21 @@ using Task = System.Threading.Tasks.Task;
 
 namespace Taskio.Application.Users.Commands.Delete;
 
-public record DeleteUserCommand : IRequest
+public record DeleteUserCommand : IRequest<Guid>
 {
     public required Guid Id { get; init; }
 }
 
 public class DeleteUserHandler(IAppDbContext dbContext,
-                                      ICurrentUserService currentUser,
-                                      ILogger<DeleteUserHandler> logger)
-    : IRequestHandler<DeleteUserCommand>
+                               ICurrentUserService currentUser,
+                               ILogger<DeleteUserHandler> logger)
+    : IRequestHandler<DeleteUserCommand, Guid>
 {
     private readonly IAppDbContext _dbContext = dbContext;
     private readonly ICurrentUserService _currentUser = currentUser;
     private readonly ILogger<DeleteUserHandler> _logger = logger;
 
-    public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
         Guid currentUserId = _currentUser.GetUserIdOrThrow();
 
@@ -37,10 +37,14 @@ public class DeleteUserHandler(IAppDbContext dbContext,
             throw new ForbiddenAccessException(ErrorMessagesConstants.ForbiddenDeleteNotOwnedUser);
         }
 
+        var deletingAuthId = deletingUser.AuthId;
+
         _dbContext.Users.Remove(deletingUser);
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation(LoggingTemplates.UserDeleted, request.Id);
+
+        return deletingAuthId;
     }
 }

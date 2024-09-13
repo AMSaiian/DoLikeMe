@@ -11,4 +11,6 @@ public static class ErrorTemplates
     public static readonly string CantParseFilters = "Can't parse provided values as filter";
 
     public static readonly string CantParseRange = "Can't parse provided values as range";
+
+    public static readonly string CantCreateUndefined = "Can't create undefined with defined value";
 }

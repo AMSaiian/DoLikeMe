@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Constants\.gitkeep\" />
-    <Folder Include="Common\Mapping\.gitkeep\" />
   </ItemGroup>
 
   <ItemGroup>

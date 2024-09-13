@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 using AMSaiian.Shared.Application.Interfaces;
 using AMSaiian.Shared.Web.Filters;
 using AMSaiian.Shared.Web.Middlewares;
+using AMSaiian.Shared.Web.Options;
 using AMSaiian.Shared.Web.Services;
 using Auth.Infrastructure.Common.Options;
 using Auth.Infrastructure.Identity;
@@ -49,8 +51,16 @@ public static class ConfigureServices
                 options.LowercaseUrls = true;
                 options.LowercaseQueryStrings = true;
             });
+        services
+            .Configure<RequestQueryOptions>(configuration
+                                                .GetRequiredSection(RequestQueryOptions.SectionName));
 
         services.AddControllers(opts => opts.Filters.Add<ApiExceptionFilterAttribute>())
+            .AddJsonOptions(opts =>
+            {
+                var enumConverter = new JsonStringEnumConverter();
+                opts.JsonSerializerOptions.Converters.Add(enumConverter);
+            })
             .AddApplicationPart(Assembly.Load("Auth"));
 
         services.AddTunedAuth(configuration);
@@ -60,7 +70,8 @@ public static class ConfigureServices
             .AddEndpointsApiExplorer()
             .AddTunedSwagger()
             .AddAutoMapper(mapperConfiguration =>
-                               mapperConfiguration.AddMaps(Assembly.GetExecutingAssembly()))
+                               mapperConfiguration.AddMaps(Assembly.GetExecutingAssembly(),
+                                                           Assembly.Load("AMSaiian.Shared.Web")))
             .AddCustomServices();
 
         return services;
@@ -120,11 +131,6 @@ public static class ConfigureServices
                                policy => policy
                                    .RequireClaim(IdentityConstants.ScopesClaimType, scope));
             }
-
-            options
-                .AddPolicy("NotExistedPolicy",
-                           policy => policy
-                               .RequireClaim(IdentityConstants.ScopesClaimType, "NotExistedPolicy"));
         });
 
         return services;
