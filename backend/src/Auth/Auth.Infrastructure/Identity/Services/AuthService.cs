@@ -67,7 +67,7 @@ public class AuthService(
 
         AuthUser updatingUser = await _userManager.Users
                                     .SingleOrDefaultAsync(u => u.Id == user.Id,
-                                                                              cancellationToken)
+                                                          cancellationToken)
                              ?? throw new NotFoundException(
                                     string.Format(ErrorMessagesConstants.UserNotFound,
                                                   user.Id));
