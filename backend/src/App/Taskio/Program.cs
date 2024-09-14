@@ -1,6 +1,5 @@
 using AMSaiian.Shared.Web.Middlewares;
 using Auth;
-using Auth.Infrastructure.Persistence;
 using Auth.Infrastructure.Persistence.Seeding.Initializers;
 using Serilog;
 using Taskio;

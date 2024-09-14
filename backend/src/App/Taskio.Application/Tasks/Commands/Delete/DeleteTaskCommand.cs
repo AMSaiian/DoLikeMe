@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Taskio.Application.Common.Constants;
 using Taskio.Application.Common.Interfaces;
 using Task = System.Threading.Tasks.Task;
-using UnauthorizedAccessException = System.UnauthorizedAccessException;
 
 namespace Taskio.Application.Tasks.Commands.Delete;
 
@@ -40,8 +39,8 @@ public sealed class DeleteTaskHandler(
 
         if (deletingTask.User.AuthId != authUserId)
         {
-            throw new UnauthorizedAccessException(
-                ErrorMessagesConstants.ForbiddenCreateTasksForAnotherUser);
+            throw new ForbiddenAccessException(
+                ErrorMessagesConstants.ForbiddenDeleteNotOwnedTask);
         }
 
         Guid ownerId = deletingTask.User.Id;

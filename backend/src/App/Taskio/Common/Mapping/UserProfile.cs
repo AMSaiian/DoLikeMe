@@ -5,9 +5,9 @@ using Taskio.Common.Contract.Requests.User;
 
 namespace Taskio.Common.Mapping;
 
-public sealed class UserMapping : Profile
+public sealed class UserProfile : Profile
 {
-    public UserMapping()
+    public UserProfile()
     {
         CreateMap<CreateUserRequest, RegisterUserCommand>();
 

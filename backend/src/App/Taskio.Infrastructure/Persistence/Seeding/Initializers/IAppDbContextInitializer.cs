@@ -7,6 +7,10 @@ public interface IAppDbContextInitializer
 {
     public List<User> Users { get; init; }
 
+    public List<Guid> UserIds { get; init; }
+
+    public List<Guid> AuthIds { get; init; }
+
     public List<Domain.Entities.Task> Tasks { get; init; }
 
     public Task ApplyDatabaseStructure();

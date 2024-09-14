@@ -13,5 +13,9 @@ public static class ErrorMessagesConstants
     public static readonly string ForbiddenAccessNotOwnedResource =
         "Can't access resource which is not owned by this account";
 
-    public static readonly string ForbiddenCreateTasksForAnotherUser = "Can't create tasks for another user";
+    public static readonly string ForbiddenCreateTasksForAnotherUser = "Can't create task for another user";
+
+    public static readonly string ForbiddenUpdateNotOwnedTask = "Can't update task which not owned by this account";
+
+    public static readonly string ForbiddenDeleteNotOwnedTask = "Can't delete task which not owned by this account";
 }

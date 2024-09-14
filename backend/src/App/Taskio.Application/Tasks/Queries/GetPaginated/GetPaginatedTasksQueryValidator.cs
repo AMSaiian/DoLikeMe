@@ -19,11 +19,11 @@ public sealed class GetPaginatedTasksQueryValidator
             .SetValidator(paginationValidator);
 
         RuleFor(query => query.FilterContext)
-            .SetValidator(filterValidator)
+            .SetValidator(filterValidator!)
             .When(query => query.FilterContext is not null);
 
         RuleFor(query => query.RangeContext)
-            .SetValidator(rangingValidator)
+            .SetValidator(rangingValidator!)
             .When(query => query.RangeContext is not null);
     }
 }

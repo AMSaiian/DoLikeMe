@@ -5,9 +5,9 @@ using Taskio.Common.Contract.Requests.Task;
 
 namespace Taskio.Common.Mapping;
 
-public sealed class TaskMapping : Profile
+public sealed class TaskProfile : Profile
 {
-    public TaskMapping()
+    public TaskProfile()
     {
         CreateMap<CreateTaskRequest, CreateTaskCommand>();
 

@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using Taskio.Application.Common.Constants;
 using Taskio.Application.Common.Interfaces;
 using Taskio.Domain.Enums;
-using UnauthorizedAccessException = System.UnauthorizedAccessException;
 
 namespace Taskio.Application.Tasks.Commands.Update;
 
@@ -49,8 +48,8 @@ public sealed class UpdateTaskHandler(
 
         if (updatingTask.User.AuthId != authUserId)
         {
-            throw new UnauthorizedAccessException(
-                ErrorMessagesConstants.ForbiddenCreateTasksForAnotherUser);
+            throw new ForbiddenAccessException(
+                ErrorMessagesConstants.ForbiddenUpdateNotOwnedTask);
         }
 
         _mapper.Map(request, updatingTask);

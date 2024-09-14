@@ -3,7 +3,6 @@ using AMSaiian.Shared.Application.Interfaces;
 using Auth.Application.Common.Constants;
 using Auth.Application.Common.Interfaces;
 using Auth.Application.Common.Models.User;
-using Auth.Application.Users.Commands.UpdateProfileInfo;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -21,13 +20,13 @@ public sealed class DeleteUserHandler(
     IAuthService authService,
     IMapper mapper,
     ICurrentUserService currentUser,
-    ILogger<UpdateProfileInfoHandler> logger)
+    ILogger<DeleteUserHandler> logger)
     : IRequestHandler<DeleteUserCommand>
 {
     private readonly IAuthService _authService = authService;
     private readonly IMapper _mapper = mapper;
     private readonly ICurrentUserService _currentUser = currentUser;
-    private readonly ILogger<UpdateProfileInfoHandler> _logger = logger;
+    private readonly ILogger<DeleteUserHandler> _logger = logger;
 
     public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
