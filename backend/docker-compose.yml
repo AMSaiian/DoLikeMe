@@ -1,0 +1,56 @@
+﻿networks:
+  taskio-network:
+    driver: bridge
+
+services:
+  taskio:
+    container_name: taskio-backend
+    image: ${DOCKER_REGISTRY-}taskio:latest
+    depends_on:
+      - db-storage
+    restart: always
+
+    build:
+      context: .
+      dockerfile: src/App/Taskio/Dockerfile
+
+    ports:
+      - ${APP_HTTP_PORT}:${HOST_HTTP_PORT}
+      - ${APP_HTTPS_PORT}:${HOST_HTTPS_PORT}
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${APPLICATION_ENVIRONMENT_NAME}
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${SSL_CERTIFICATE_PASSWORD}
+      ASPNETCORE_Kestrel__Certificates__Default__Path: ${SSL_CERTIFICATE_PATH}
+      ConnectionStrings__Application: ${APPLICATION_CONNECTION_STRING}
+      ConnectionStrings__Auth: ${AUTH_CONNECTION_STRING}
+      TokenProvider__Secret: ${TOKEN_PROVIDER_SECRET}
+      SEEDING: ${INCLUDE_SEEDING}
+
+    networks:
+      - taskio-network
+
+    volumes:
+      - ./taskio-logs:/app/taskio-logs
+      - ./taskio-dataprotection-keys:/home/app/.aspnet/DataProtection-Keys
+      - ./taskio-ssl-certificate:/home/app/.aspnet/https
+
+  db-storage:
+    container_name: taskio-postgresql
+    image: postgres:latest
+    restart: always
+
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB_NAME}
+      POSTGRES_PORT: ${PG_PORT}
+
+    ports:
+      - ${PG_PORT}:${PG_HOST_PORT}
+
+    networks:
+      - taskio-network
+
+    volumes:
+      - ./taskio-pgdata:/var/lib/postgresql/data
