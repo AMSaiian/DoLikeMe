@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using System.Security.Claims;
+using System.Text.Json.Nodes;
 using Auth.Application.Common.Constants;
 using Auth.Application.Common.Models.Token;
 using Auth.Common.Contract.Requests.User;
@@ -88,7 +89,7 @@ public class TokenEndpointTests
     }
 
     [Fact]
-    public async Task LoginEndpointWithInCorrectCredentialsMustReturnUnauthorized()
+    public async Task LoginEndpointWithInCorrectPasswordMustReturnUnauthorized()
     {
         // Arrange
         await SetupDatabase();
@@ -110,6 +111,70 @@ public class TokenEndpointTests
             .HaveStatusCode(HttpStatusCode.Unauthorized)
             .And
             .HaveClientError(ErrorMessagesConstants.InvalidPassword);
+    }
+
+    [Fact]
+    public async Task LoginEndpointWithInCorrectIdentifierMustReturnNotFound()
+    {
+        // Arrange
+        await SetupDatabase();
+
+        var requestUri = $"{ApiEndpointConstants.ApiBase}/{ApiEndpointConstants.AuthBase}/login";
+        var request = new LoginRequest
+        {
+            Identifier = Guid.NewGuid().ToString("D"),
+            Password = "123Invalid!",
+        };
+
+        // Act
+        HttpResponseMessage response = await HttpClient
+            .PostAsJsonAsync(requestUri, request);
+
+        // Assert
+        response
+            .Should()
+            .HaveStatusCode(HttpStatusCode.NotFound)
+            .And
+            .HaveClientError(
+                string.Format(
+                    ErrorMessagesConstants.UserNotFound,
+                    request.Identifier));
+    }
+
+    [Fact]
+    public async Task LoginEndpointWithInCorrectIdentifierFormatMustReturnBadRequest()
+    {
+        // Arrange
+        await SetupDatabase();
+
+        var requestUri = $"{ApiEndpointConstants.ApiBase}/{ApiEndpointConstants.AuthBase}/login";
+        var request = new LoginRequest
+        {
+            Identifier = Guid.NewGuid().ToString("D") + "^$",
+            Password = "123Invalid!",
+        };
+
+        // Act
+        HttpResponseMessage response = await HttpClient
+            .PostAsJsonAsync(requestUri, request);
+
+        JsonObject? content = await response.Content
+            .ReadFromJsonAsync<JsonObject>();
+
+        // Assert
+        response
+            .Should()
+            .HaveStatusCode(HttpStatusCode.BadRequest);
+
+        content
+            .Should()
+            .NotBeNull()
+            .And.Subject.As<JsonObject>()["errors"]
+            .Should()
+            .NotBeNull()
+            .And.Subject.As<JsonNode>()["Identifier"]
+            .Should()
+            .NotBeNull();
     }
 
     private readonly TokenProviderOptions _tokenOptions;
