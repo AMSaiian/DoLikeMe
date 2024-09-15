@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.IntegrationTests", "tests\Auth.IntegrationTests\Auth.IntegrationTests.csproj", "{15AB3827-C78B-4DAF-B7CC-D846251B390E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskio.IntegrationTests", "tests\Taskio.IntegrationTests\Taskio.IntegrationTests.csproj", "{15AB3827-C78B-4DAF-B7CC-D846251B390E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskio.UnitTests", "tests\Taskio.UnitTests\Taskio.UnitTests.csproj", "{F5B4A31D-52A1-4FEC-8701-40FDEA65A5A3}"
 EndProject

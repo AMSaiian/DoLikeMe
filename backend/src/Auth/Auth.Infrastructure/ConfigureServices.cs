@@ -30,14 +30,14 @@ public static class ConfigureServices
 
         services
             .AddAuthServices(configuration)
-            .AddAppDbContext(connectionString)
+            .AddAppIdentityDbContext(connectionString)
             .AddAppDbContextInitializer(seedingValue);
 
         return services;
     }
 
-    private static IServiceCollection AddAppDbContext(this IServiceCollection services,
-                                                      string connectionString)
+    public static IServiceCollection AddAppIdentityDbContext(this IServiceCollection services,
+                                                             string connectionString)
     {
         services
             .AddSingleton<SaveChangesInterceptor, AuditedInterceptor>()

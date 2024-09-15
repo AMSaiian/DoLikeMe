@@ -11,7 +11,7 @@ using Taskio.Infrastructure.Persistence.Seeding.Initializers;
 
 namespace Taskio.UnitTests.Common;
 
-public class UnitTestFixture
+public sealed class UnitTestFixture
 {
     public UnitTestFixture()
     {
@@ -40,7 +40,7 @@ public class UnitTestFixture
 
     public Mock<ICurrentUserService> CurrentUserServiceMoq { get; }
 
-    public virtual async Task SetupDbContext()
+    public async Task SetupDbContext()
     {
         await AppDbContextInitializer.ClearStorageAsync();
         await AppDbContextInitializer.SeedAsync();

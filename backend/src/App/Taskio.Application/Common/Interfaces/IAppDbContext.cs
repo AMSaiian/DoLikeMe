@@ -3,7 +3,7 @@ using Taskio.Domain.Entities;
 
 namespace Taskio.Application.Common.Interfaces;
 
-public interface IAppDbContext
+public interface IAppDbContext : IDisposable
 {
     public DbSet<User> Users { get; set; }
 
