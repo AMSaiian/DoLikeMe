@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d39ce1ef-24d6-4d0f-abf5-e879f6d07d37)# MyCutePet
+MyCutePet
 --------
 ## To run with docker (recommended)
 You have to clarify that your machine has got next software:
