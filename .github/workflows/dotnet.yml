@@ -25,5 +25,8 @@ jobs:
     - name: Build Solution
       run: dotnet build backend/Task.io.sln --configuration Release --no-restore
       
-    - name: Run Unit and Integration tests 
-      run: dotnet test backend/Task.io.sln --no-build --verbosity normal
+    - name: Run Unit Tests
+      run: dotnet test backend/tests/Taskio.UnitTests/Taskio.UnitTests.csproj --no-build --verbosity normal
+      
+    - name: Run Integration Tests
+      run: dotnet test backend/tests/Taskio.IntegrationTests/Taskio.IntegrationTests.csproj --no-build --verbosity normal
