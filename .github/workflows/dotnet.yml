@@ -28,6 +28,6 @@ jobs:
       
     - name: Run Integration Tests
       env:
-        TokenProvider__Secret: ${{ secrets..GITHUB_TOKEN }}
+        TokenProvider__Secret: ${{ secrets.TOKEN_SECRET }}
       run: dotnet test backend/tests/Taskio.IntegrationTests/Taskio.IntegrationTests.csproj --no-restore --verbosity normal
       
