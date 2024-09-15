@@ -1,4 +1,4 @@
-# MyCutePet
+![image](https://github.com/user-attachments/assets/d39ce1ef-24d6-4d0f-abf5-e879f6d07d37)# MyCutePet
 --------
 ## To run with docker (recommended)
 You have to clarify that your machine has got next software:
@@ -43,7 +43,7 @@ cd MyCutePet/backend
 3. Fill next placeholders in configuration using appsetting.json or .NET user secrets:
 - *TokenProvider -> Secret*
 - *ConnectionStrings -> Auth* 
-- *ConnectionString -> Application* (can be similar with Auth)
+- *ConnectionStrings -> Application* (can be similar with Auth)
 4. Run next commands using Powershell or Command line:
 ```bash
 dotnet restore Task.io.sln
@@ -101,3 +101,7 @@ The PostgreSQL database is accessible on port 5432 (using local run)
 - #### Testing
 1. Integration testing using docker containers for database per every test class and seeding.
 2. Unit testing using InMemory DbContext and Moq Mocks.
+[1]![image](https://github.com/user-attachments/assets/689fb6c8-efb1-4f4d-9f61-2a7d7a826290)
+[2]![image](https://github.com/user-attachments/assets/e2d6ffc1-5275-4208-98d5-1f0e200afabf)
+
+
