@@ -53,7 +53,7 @@ dotnet run --project src/App/Taskio/Taskio.csproj --no-build
 
 ## Since now you can access backend using next URIs (if configuration hasn't been changed):
 - Swagger UI (HTTPS): https://localhost:9081/swagger/index.html 
-- Swagger UI (HTTP): http://localhost:9080/swagger/index.html
+- Swagger UI (HTTP): http://localhost:9080/swagger/index.html !!! due to Swagger UI can't handle redirect, use HTTPS
 - The PostgreSQL database is accessible on port 5433 (using Docker run) or
 The PostgreSQL database is accessible on port 5432 (using local run)
 ------------
