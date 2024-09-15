@@ -3,8 +3,6 @@ name: CI For MyCutePet
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build-and-test-remote:
@@ -26,7 +24,7 @@ jobs:
       run: dotnet build backend/Task.io.sln --configuration Release --no-restore
       
     - name: Run Unit Tests
-      run: dotnet test backend/tests/Taskio.UnitTests/Taskio.UnitTests.csproj --no-build --verbosity normal
+      run: dotnet test backend/tests/Taskio.UnitTests/Taskio.UnitTests.csproj --no-restore --verbosity detailed
       
     - name: Run Integration Tests
-      run: dotnet test backend/tests/Taskio.IntegrationTests/Taskio.IntegrationTests.csproj --no-build --verbosity normal
+      run: dotnet test backend/tests/Taskio.IntegrationTests/Taskio.IntegrationTests.csproj --no-restore --verbosity detailed
