@@ -7,9 +7,10 @@ using Task = System.Threading.Tasks.Task;
 
 namespace Taskio.Infrastructure.Persistence.Seeding.Initializers;
 
-public class AppDbContextInitializer(ILogger<AppDbContextInitializer> logger,
-                                     AppDbContext context,
-                                     Faker<Domain.Entities.Task> taskFaker)
+public class AppDbContextInitializer(
+    ILogger<AppDbContextInitializer> logger,
+    AppDbContext context,
+    Faker<Domain.Entities.Task> taskFaker)
     : IAppDbContextInitializer
 {
     public const int UserAmount = 5;

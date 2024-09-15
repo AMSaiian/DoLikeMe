@@ -32,7 +32,7 @@ public static class ConfigureServices
     }
 
     public static IServiceCollection AddAppDbContext(this IServiceCollection services,
-                                                      string connectionString)
+                                                     string connectionString)
     {
         services
             .AddSingleton<SaveChangesInterceptor, AuditedInterceptor>()
