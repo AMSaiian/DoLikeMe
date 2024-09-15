@@ -13,7 +13,7 @@ public class AppDbContextInitializer(
     Faker<Domain.Entities.Task> taskFaker)
     : IAppDbContextInitializer
 {
-    public const int UserAmount = 5;
+    public const int UserAmount = 6;
     public const int TasksPerUserAmount = 20;
 
     public List<Guid> UserIds { get; init; } =
@@ -22,7 +22,8 @@ public class AppDbContextInitializer(
         new Guid("11e8f79b-713e-449b-a4a3-bcc354ad48e6"),
         new Guid("3c0ecff1-3366-4974-aff5-96ee1472d32a"),
         new Guid("088a6d8a-88ee-455b-8587-cc575a572d6e"),
-        new Guid("d5c64a11-11ae-4333-992f-e85666e6302f")
+        new Guid("d5c64a11-11ae-4333-992f-e85666e6302f"),
+        new Guid("636df397-ab51-4317-ac54-c71f6640ad79")
     ];
 
     public List<Guid> AuthIds { get; init; } =
@@ -31,7 +32,8 @@ public class AppDbContextInitializer(
         new Guid("c1c1fd44-39b4-4c5a-9f66-c5e0dc38d579"),
         new Guid("5a64cb6e-9e2e-47ed-b21d-b1dddb11d9df"),
         new Guid("5daa400a-0dca-40c8-9833-6c10994c862a"),
-        new Guid("c249e138-1488-43f2-af52-52a02019046d")
+        new Guid("c249e138-1488-43f2-af52-52a02019046d"),
+        new Guid("c3ccd0cb-7da5-4be8-a9cd-6f644c9bd93f")
     ];
 
     public List<User> Users { get; init; } = [];

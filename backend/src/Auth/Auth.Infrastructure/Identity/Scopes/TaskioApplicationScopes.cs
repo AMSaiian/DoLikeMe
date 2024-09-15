@@ -9,6 +9,7 @@ public static class TaskioApplicationScopes
         TaskResourceScopes.UpdateTask,
         TaskResourceScopes.GetOwnedTasksList,
         TaskResourceScopes.GetOwnedTaskDetails,
+        UserResourceScopes.GetUserInfo
     ];
 
     public static class TaskResourceScopes
@@ -18,5 +19,10 @@ public static class TaskioApplicationScopes
         public const string CreateTask = "task-create";
         public const string DeleteTask = "task-delete";
         public const string UpdateTask = "task-update";
+    }
+
+    public static class UserResourceScopes
+    {
+        public const string GetUserInfo = "user-get-info";
     }
 }

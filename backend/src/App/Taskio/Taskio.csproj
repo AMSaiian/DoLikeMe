@@ -17,16 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\..\.dockerignore">
-      <Link>.dockerignore</Link>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj" />
     <ProjectReference Include="..\..\Shared\AMSaiian.Shared.Web\AMSaiian.Shared.Web.csproj" />
     <ProjectReference Include="..\Taskio.Application\Taskio.Application.csproj" />
     <ProjectReference Include="..\Taskio.Infrastructure\Taskio.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
   </ItemGroup>
 
 </Project>

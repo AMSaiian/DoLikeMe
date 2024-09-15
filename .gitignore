@@ -198,7 +198,7 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
-*.pfx
+# *.pfx
 *.publishsettings
 node_modules/
 orleans.codegen.cs
@@ -613,5 +613,8 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+*/taskio-pgdata
+*/taskio-logs
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,dotnetcore,csharp,rider,dotenv

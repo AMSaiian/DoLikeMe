@@ -10,7 +10,7 @@ namespace Auth.Infrastructure.Persistence.Seeding.Initializers;
 public class AppIdentityDbContextInitializer(
     ILogger<AppIdentityDbContextInitializer> logger,
     AppIdentityDbContext context,
-    Faker<AuthUser> taskFaker)
+    Faker<AuthUser> userFaker)
     : IAppIdentityDbContextInitializer
 {
     public const int UserAmount = 5;
@@ -23,7 +23,8 @@ public class AppIdentityDbContextInitializer(
         new Guid("c1c1fd44-39b4-4c5a-9f66-c5e0dc38d579"),
         new Guid("5a64cb6e-9e2e-47ed-b21d-b1dddb11d9df"),
         new Guid("5daa400a-0dca-40c8-9833-6c10994c862a"),
-        new Guid("c249e138-1488-43f2-af52-52a02019046d")
+        new Guid("c249e138-1488-43f2-af52-52a02019046d"),
+        new Guid("c3ccd0cb-7da5-4be8-a9cd-6f644c9bd93f")
     ];
 
     public List<AuthUser> Users { get; init; } = [];
@@ -77,16 +78,26 @@ public class AppIdentityDbContextInitializer(
 
     private readonly ILogger<AppIdentityDbContextInitializer> _logger = logger;
     private readonly AppIdentityDbContext _context = context;
-    private readonly Faker<AuthUser> _taskFaker = taskFaker;
+    private readonly Faker<AuthUser> _userFaker = userFaker;
 
     private async Task SeedUsers()
     {
-        Users.AddRange(_taskFaker.Generate(UserAmount));
+        Users.AddRange(_userFaker.Generate(UserAmount));
 
         for (int i = 0; i < UserAmount; i++)
         {
             Users[i].Id = AuthIds[i];
         }
+
+        AuthUser wellKnownUser = _userFaker.Generate();
+
+        wellKnownUser.Id = AuthIds[5];
+        wellKnownUser.UserName = "WellKnownUser";
+        wellKnownUser.Email = "WellKnownUser@gmail.com";
+        wellKnownUser.NormalizedEmail = wellKnownUser.Email.ToUpper();
+        wellKnownUser.NormalizedUserName = wellKnownUser.UserName.ToUpper();
+
+        Users.Add(wellKnownUser);
 
         await _context.AddRangeAsync(Users);
     }

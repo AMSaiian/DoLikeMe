@@ -5,6 +5,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A9BF852-1300-4DD2-9FE5-B5A1EC31A994}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		docker-compose.dcproj = docker-compose.dcproj
+		run-with-docker.sh = run-with-docker.sh
+		run-with-docker.ps1 = run-with-docker.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskio.IntegrationTests", "tests\Taskio.IntegrationTests\Taskio.IntegrationTests.csproj", "{15AB3827-C78B-4DAF-B7CC-D846251B390E}"
