@@ -1,0 +1,29 @@
+name: CI For MyCutePet
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-test-remote:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore backend/Task.io.sln
+      
+    - name: Build Solution
+      run: dotnet build backend/Task.io.sln --configuration Release --no-restore
+      
+    - name: Run Unit and Integration tests 
+      run: dotnet test backend/Task.io.sln --no-build --verbosity normal
