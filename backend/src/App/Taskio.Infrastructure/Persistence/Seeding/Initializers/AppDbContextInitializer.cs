@@ -72,12 +72,13 @@ public class AppDbContextInitializer(ILogger<AppDbContextInitializer> logger,
         }
     }
 
-    public Task BulkClearStorageAsync()
+    public async Task BulkClearStorageAsync()
     {
-        return _context.Tasks
-            .ExecuteDeleteAsync()
-            .ContinueWith(_ => _context.Users
-                              .ExecuteDeleteAsync());
+        await _context.Tasks
+            .ExecuteDeleteAsync();
+
+        await _context.Users
+            .ExecuteDeleteAsync();
     }
 
     public Task ClearStorageAsync()

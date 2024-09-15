@@ -54,8 +54,12 @@ public abstract class IntegrationTestBase
     public async Task SetupDatabase()
     {
         await DbInitializer.ApplyDatabaseStructure();
-        await DbInitializer.ClearStorageAsync();
+        await DbInitializer.BulkClearStorageAsync();
         await DbInitializer.SeedAsync();
+
+        await IdentityDbInitializer.ApplyDatabaseStructure();
+        await IdentityDbInitializer.BulkClearStorageAsync();
+        await IdentityDbInitializer.SeedAsync();
     }
 
     public void Dispose()
@@ -72,7 +76,6 @@ public abstract class IntegrationTestBase
             DbContext?.Dispose();
             IdentityDbContext?.Dispose();
             HttpClient?.Dispose();
-            Factory?.Dispose();
         }
     }
 }

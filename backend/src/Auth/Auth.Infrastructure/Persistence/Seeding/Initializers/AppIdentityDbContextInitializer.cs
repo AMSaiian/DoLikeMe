@@ -7,12 +7,15 @@ using Task = System.Threading.Tasks.Task;
 
 namespace Auth.Infrastructure.Persistence.Seeding.Initializers;
 
-public class AppIdentityDbContextInitializer(ILogger<AppIdentityDbContextInitializer> logger,
-                                     AppIdentityDbContext context,
-                                     Faker<AuthUser> taskFaker)
+public class AppIdentityDbContextInitializer(
+    ILogger<AppIdentityDbContextInitializer> logger,
+    AppIdentityDbContext context,
+    Faker<AuthUser> taskFaker)
     : IAppIdentityDbContextInitializer
 {
     public const int UserAmount = 5;
+
+    public const string DefaultPassword = "12345678Ab!";
 
     public List<Guid> AuthIds { get; init; } =
     [

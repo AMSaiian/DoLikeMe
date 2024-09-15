@@ -28,11 +28,13 @@ public class IntegrationTestWebAppFactory
     {
         builder.ConfigureAppConfiguration(config =>
         {
-            config.SetBasePath(Directory.GetCurrentDirectory());
-            config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            config.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
-            config.AddJsonFile("appsettings.Testing.json", optional: true, reloadOnChange: true);
-            config.AddEnvironmentVariables();
+            config
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.Testing.json", optional: true, reloadOnChange: true)
+                .AddUserSecrets<IntegrationTestBase>()
+                .AddEnvironmentVariables();
         });
 
         builder.ConfigureTestServices(services =>
@@ -49,7 +51,6 @@ public class IntegrationTestWebAppFactory
     {
         await _dbContainer.StartAsync();
     }
-
 
     public new async Task DisposeAsync()
     {

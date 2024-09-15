@@ -6,6 +6,8 @@ public interface IAppIdentityDbContextInitializer
 {
     public List<AuthUser> Users { get; init; }
 
+    public List<Guid> AuthIds { get; init; }
+
     public Task ApplyDatabaseStructure();
 
     public Task SeedAsync();

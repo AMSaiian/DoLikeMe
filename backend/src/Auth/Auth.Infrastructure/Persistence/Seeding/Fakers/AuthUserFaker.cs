@@ -1,4 +1,5 @@
 ﻿using Auth.Infrastructure.Persistence.Entities;
+using Auth.Infrastructure.Persistence.Seeding.Initializers;
 using Bogus;
 using Bogus.Extensions;
 using Microsoft.AspNetCore.Identity;
@@ -27,7 +28,7 @@ public sealed class AuthUserFaker : Faker<AuthUser>
 
         RuleFor(u => u.PasswordHash,
                 (_, u) => userManager.PasswordHasher
-                    .HashPassword(u, "12345678Ab!"));
+                    .HashPassword(u, AppIdentityDbContextInitializer.DefaultPassword));
 
         RuleFor(u => u.SecurityStamp,
                 () => Guid.NewGuid().ToString("N"));
