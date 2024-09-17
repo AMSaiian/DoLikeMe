@@ -57,13 +57,21 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
                     entity.DueDate.HasValue
                  && filters
                         .Select(entry => DateTime
-                                    .Parse(entry, CultureInfo.InvariantCulture))
+                                    .SpecifyKind(DateTime
+                                                     .Parse(entry,
+                                                            CultureInfo.InvariantCulture,
+                                                            DateTimeStyles.AdjustToUniversal),
+                                                 DateTimeKind.Utc))
                         .Contains(entity.DueDate.Value)
             },
             {
                 TaskConstants.FilteredBy.CreatedDate, filters => entity => filters
                     .Select(entry => DateTime
-                                .Parse(entry, CultureInfo.InvariantCulture))
+                                .SpecifyKind(DateTime
+                                                 .Parse(entry,
+                                                        CultureInfo.InvariantCulture,
+                                                        DateTimeStyles.AdjustToUniversal),
+                                             DateTimeKind.Utc))
                     .Contains(entity.CreatedAt)
             },
             {
@@ -71,7 +79,11 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
                     entity.UpdatedAt.HasValue
                  && filters
                         .Select(entry => DateTime
-                                    .Parse(entry, CultureInfo.InvariantCulture))
+                                    .SpecifyKind(DateTime
+                                                     .Parse(entry,
+                                                            CultureInfo.InvariantCulture,
+                                                            DateTimeStyles.AdjustToUniversal),
+                                                 DateTimeKind.Utc))
                         .Contains(entity.UpdatedAt.Value)
             }
         });
@@ -85,18 +97,48 @@ public class Task : BaseEntity, IOrdering, IFiltered<Task>, IRanged<Task>
             {
                 TaskConstants.RangedBy.DueDate, (start, end) =>
                     entity => entity.DueDate.HasValue
-                           && entity.DueDate >= DateTime.Parse(start, CultureInfo.InvariantCulture)
-                           && entity.DueDate <= DateTime.Parse(end, CultureInfo.InvariantCulture)
+                           && entity.DueDate >= DateTime
+                                  .SpecifyKind(DateTime
+                                                   .Parse(start,
+                                                          CultureInfo.InvariantCulture,
+                                                          DateTimeStyles.AdjustToUniversal),
+                                               DateTimeKind.Utc)
+                           && entity.DueDate <= DateTime
+                                  .SpecifyKind(DateTime
+                                                   .Parse(end,
+                                                          CultureInfo.InvariantCulture,
+                                                          DateTimeStyles.AdjustToUniversal),
+                                               DateTimeKind.Utc)
             },
             {
                 TaskConstants.RangedBy.CreatedDate, (start, end) =>
-                    entity => entity.CreatedAt >= DateTime.Parse(start, CultureInfo.InvariantCulture)
-                           && entity.CreatedAt <= DateTime.Parse(end, CultureInfo.InvariantCulture)
+                    entity => entity.CreatedAt >= DateTime
+                                  .SpecifyKind(DateTime
+                                                   .Parse(start,
+                                                          CultureInfo.InvariantCulture,
+                                                          DateTimeStyles.AdjustToUniversal),
+                                               DateTimeKind.Utc)
+                           && entity.CreatedAt <= DateTime
+                                  .SpecifyKind(DateTime
+                                                   .Parse(end,
+                                                          CultureInfo.InvariantCulture,
+                                                          DateTimeStyles.AdjustToUniversal),
+                                               DateTimeKind.Utc)
             },
             {
                 TaskConstants.RangedBy.UpdatedDate, (start, end) =>
-                    entity => entity.UpdatedAt >= DateTime.Parse(start, CultureInfo.InvariantCulture)
-                           && entity.UpdatedAt <= DateTime.Parse(end, CultureInfo.InvariantCulture)
+                    entity => entity.UpdatedAt >= DateTime
+                                  .SpecifyKind(DateTime
+                                                   .Parse(start,
+                                                          CultureInfo.InvariantCulture,
+                                                          DateTimeStyles.AdjustToUniversal),
+                                               DateTimeKind.Utc)
+                           && entity.UpdatedAt <= DateTime
+                                  .SpecifyKind(DateTime
+                                                   .Parse(end,
+                                                          CultureInfo.InvariantCulture,
+                                                          DateTimeStyles.AdjustToUniversal),
+                                               DateTimeKind.Utc)
             }
         });
 }
