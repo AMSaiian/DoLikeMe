@@ -25,7 +25,7 @@ cd MyCutePet/backend
 chmod +x ./run_with_docker.sh # use this line if you encountered issues with permissions
 ./run-with-docker.sh
 ```
-# !!! Don't pay attention to application exceptions, related to error with connection to Postgre DB, during first start. This is not issue due to during first start there is init of Postgre volume and other heavy processes, which can make Db container unavailable during some time. Docker Compose of project has been designed to handle this situation with "Restart always", so just wait some time and then application is going to be ready to work properly
+### !!! Don't pay attention to application exceptions, related to error with connection to Postgre DB, during first start. This is not issue due to during first start there is init of Postgre volume and other heavy processes, which can make Db container unavailable during some time. Docker Compose of project has been designed to handle this situation with "Restart always", so just wait some time and then application is going to be ready to work properly
 ## To run locally
 You have to clarify that your machine has got next software:
 - .NET Core 8
