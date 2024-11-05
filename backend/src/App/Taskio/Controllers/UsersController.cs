@@ -99,7 +99,7 @@ public class UsersController(
 
         PaginationContext paginationContext = new()
         {
-            OrderContext = this.ProcessOrderQuery(order, defaultOrderPropertyName, _mapper),
+            OrderContext = this.ProcessOrderQuery(order, defaultOrderPropertyName, _mapper, queryOptions.Value),
             PageContext = this.ProcessPageQuery(page, _mapper, queryOptions.Value)
         };
         FilterContext? filterContext = this.ProcessFilterQuery(filter, _mapper);

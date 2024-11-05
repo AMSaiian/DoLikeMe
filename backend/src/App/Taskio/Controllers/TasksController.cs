@@ -26,8 +26,8 @@ public class TasksController(
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetUserTasks([FromRoute] Guid taskId,
-                                                  CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetDetailedTask([FromRoute] Guid taskId,
+                                                     CancellationToken cancellationToken = default)
     {
         var command = new GetDetailedTaskQuery
         {
